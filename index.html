@@ -94,6 +94,7 @@ h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webki
 .mtab.trace{color:var(--accent);border-color:var(--accent)}
 .zone{fill:rgba(56,189,248,.04);stroke:#38BDF8;stroke-opacity:.35;stroke-dasharray:5 5;stroke-width:1.2}
 .zl{fill:#38BDF8;font:600 11px var(--mono);opacity:.85}
+.more{align-self:center;font:500 13px var(--mono);color:var(--fg-muted);margin-left:6px}
 /* pipeline */
 .pipe{display:flex;align-items:center;gap:0;margin:40px 0 20px;overflow-x:auto;padding:8px 2px 14px}
 .stage{flex:1;min-width:190px;text-align:left;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--fg);font:inherit;transition:border-color .2s,transform .2s}
@@ -226,9 +227,9 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
 <section id="topology">
   <div class="wrap">
     <p class="eyebrow">architecture.tf</p>
-    <h2 class="rv">Two platforms, end to end.</h2>
-    <p class="lead rv">Switch between the AWS iGaming platform and an Azure API platform. Trace a request through either one, or click any component.</p>
-    <div class="plan-tabs rv"><span id="mapTabs" style="display:contents"></span><button class="mtab trace" id="trace" type="button">▶ Trace a request</button></div>
+    <h2 class="rv">Three platforms. Plenty more.</h2>
+    <p class="lead rv">A sample of the platforms I have built and run, not the full list. Switch between them, trace a request, or click any component.</p>
+    <div class="plan-tabs rv"><span id="mapTabs" style="display:contents"></span><button class="mtab trace" id="trace" type="button">▶ Trace a request</button><span class="more">+ many more in production</span></div>
     <div class="card topo rv" style="margin-top:0">
       <div id="topo"></div>
       <div class="inspect card" id="inspect" aria-live="polite"></div>
@@ -358,6 +359,29 @@ const CV = {
       ],
       edges: [['user','cf'],['cf','edge'],['edge','auth'],['edge','api'],['edge','web'],['edge','ingest'],['api','pg'],['api','cache'],['web','cache'],['ingest','pg'],['mig','pg'],['ci','ecr'],['ecr','api'],['ecr','mig'],['ssm','api'],['api','obs'],['ingest','obs']],
       trace: ['user','cf','edge','auth','api','cache','pg'],
+    },
+    betting: {
+      label: 'AWS · Sports betting platform', w: 920, h: 450,
+      zones: [{ x: 330, y: 12, w: 580, h: 330, label: 'AWS VPC · 3 AZs · public + private subnets' }],
+      nodes: [
+        { id: 'user', x: 20, y: 150, t: 'Players', s: 'web · back office', d: 'Players and staff reach the platform over HTTPS through CloudFront.', tags: ['HTTPS'] },
+        { id: 'cf', x: 170, y: 150, t: 'CloudFront', s: 'ALB origin', d: 'CloudFront in front of the ALB with caching disabled for the API. A smoke test hits it after every proxy deploy.', tags: ['CloudFront'] },
+        { id: 'alb', x: 350, y: 150, t: 'ALB', s: 'path routing', d: 'The ALB accepts traffic only from CloudFront and routes by path to the right ECS service.', tags: ['ALB', 'Security groups'] },
+        { id: 'proxy', x: 540, y: 40, t: 'API proxy', s: 'nginx · JWT headers', d: 'nginx/OpenResty rewrites /api paths to backend services and injects JWT-derived headers.', tags: ['nginx', 'ECS'] },
+        { id: 'front', x: 540, y: 115, t: 'Frontend', s: 'Next.js on ECS', d: 'Next.js standalone frontend served from ECS behind the ALB.', tags: ['Next.js', 'ECS'] },
+        { id: 'core', x: 540, y: 190, t: 'Core services', s: 'market · price · betting +', d: 'Around 15 backend services on ECS with Service Connect. The betting service is pinned to a single task with no overlap during deploys. Capacity is EC2-backed, spot-only in dev.', tags: ['ECS', 'Service Connect', 'Spot', 'Autoscaling'] },
+        { id: 'staff', x: 540, y: 265, t: 'Staff auth · audit', s: 'private only', d: 'Staff authentication, audit and back office run with no ALB and no CloudFront. They are reachable only over Service Connect.', tags: ['Service Connect', 'Private'] },
+        { id: 'rds', x: 740, y: 40, t: 'RDS MySQL', s: 'private · PITR', d: 'Private-only RDS MySQL with encrypted storage, deletion protection and point-in-time recovery.', tags: ['RDS', 'Encrypted', 'PITR'] },
+        { id: 'redis', x: 740, y: 130, t: 'ElastiCache', s: 'Redis · TLS + AUTH', d: 'Redis with transit encryption and an AUTH token.', tags: ['ElastiCache', 'TLS'] },
+        { id: 'kafka', x: 740, y: 220, t: 'MSK Kafka', s: 'private brokers', d: 'MSK with private-only brokers across two AZs, TLS and SCRAM auth, and topics for events and compact odds.', tags: ['MSK', 'SCRAM', 'TLS'] },
+        { id: 'ci', x: 20, y: 380, t: 'GitHub Actions', s: 'OIDC deploy role', d: 'Deploys assume an AWS role through GitHub OIDC. Build, push to ECR, force a new ECS deployment, wait for stability.', tags: ['GitHub Actions', 'OIDC'] },
+        { id: 'ecr', x: 190, y: 380, t: 'ECR', s: 'repo per service', d: 'One ECR repository per service, with lifecycle policies.', tags: ['ECR'] },
+        { id: 'sec', x: 360, y: 380, t: 'Secrets Manager', s: 'DB · Kafka · APIs', d: 'Database, Kafka SCRAM and third-party API credentials live in Secrets Manager.', tags: ['Secrets Manager'] },
+        { id: 'obs', x: 540, y: 380, t: 'CloudWatch', s: 'alarms · Slack', d: 'Alarms across ALB, ECS, RDS, Redis and MSK, a shared dashboard, and EventBridge rules for failed deployments. Alerts reach Slack through SNS and Lambda.', tags: ['CloudWatch', 'SNS', 'Lambda', 'EventBridge'] },
+        { id: 'budget', x: 740, y: 380, t: 'AWS Budget', s: 'Slack alerts', d: 'A monthly budget with Slack alerts on actual and forecasted spend.', tags: ['Budgets', 'Cost control'] },
+      ],
+      edges: [['user','cf'],['cf','alb'],['alb','proxy'],['alb','front'],['alb','core'],['proxy','core'],['proxy','staff'],['core','rds'],['core','redis'],['core','kafka'],['staff','rds'],['ci','ecr'],['ecr','core'],['sec','core'],['core','obs'],['obs','budget']],
+      trace: ['user','cf','alb','proxy','core','rds'],
     },
     azure: {
       label: 'Azure · API platform (Terraform)', w: 900, h: 400,
