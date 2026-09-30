@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiril Milosevski · DevOps Engineer</title>
+<meta name="description" content="Kiril Milosevski, DevOps Engineer in Skopje. AWS, Terraform, ECS, Kubernetes, CI/CD, observability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020617;--card:#0E1223;--muted:#1A1E2F;--border:#334155;
+  --fg:#F8FAFC;--fg-muted:#94A3B8;--accent:#22C55E;--accent-2:#38BDF8;--warn:#F59E0B;--danger:#EF4444;
+  --mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter',system-ui,sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:110px 0;position:relative;scroll-margin-top:40px}
+.eyebrow{font:600 13px var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;margin:8px 0 14px;text-wrap:balance}
+.lead{color:var(--fg-muted);max-width:640px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid var(--border);background:var(--muted);color:var(--fg);transition:transform .2s,border-color .2s,background .2s;min-height:44px}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:#0F172A;border-color:var(--accent)}
+.btn.primary:hover{background:#4ADE80}
+svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* background grid + cursor glow */
+#grid{position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(51,65,85,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(51,65,85,.18) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(34,197,94,.13),transparent 65%);transform:translate(-50%,-50%);left:50%;top:30%;transition:left .25s ease-out,top .25s ease-out}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px);background:rgba(2,6,23,.7);border-bottom:1px solid rgba(51,65,85,.5)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{font:600 15px var(--mono)}.logo b{color:var(--accent)}
+nav ul{display:flex;gap:26px;list-style:none;font-size:14px}
+nav ul a{text-decoration:none;color:var(--fg-muted);transition:color .2s}
+nav ul a:hover,nav ul a.on{color:var(--fg)}
+#progress{position:absolute;bottom:-1px;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0}
+@media(max-width:760px){nav ul{display:none}}
+
+/* hero */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:90px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr}}
+.status{display:inline-flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--fg-muted);border:1px solid var(--border);padding:6px 12px;border-radius:99px;background:var(--card)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+h1{font-size:clamp(44px,7vw,84px);line-height:1.02;font-weight:800;letter-spacing:-.035em;margin:22px 0 16px}
+h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font:500 clamp(16px,2vw,20px) var(--mono);color:var(--fg-muted);min-height:1.6em}
+.role .cur{display:inline-block;width:10px;height:1.1em;background:var(--accent);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.fetch{padding:22px;font:13.5px/1.75 var(--mono);box-shadow:0 30px 80px -30px rgba(34,197,94,.25)}
+.bar{display:flex;gap:7px;margin-bottom:14px}.bar i{width:11px;height:11px;border-radius:50%;background:#EF4444}.bar i:nth-child(2){background:#F59E0B}.bar i:nth-child(3){background:#22C55E}
+.fetch .k{color:var(--accent)}.fetch .v{color:var(--fg)}.fetch .c{color:var(--fg-muted)}
+.swatch{display:flex;gap:4px;margin-top:10px}.swatch span{width:22px;height:12px;border-radius:2px}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+@media(max-width:860px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.panel{padding:18px 18px 12px;overflow:hidden}
+.panel .t{font:500 12px var(--mono);color:var(--fg-muted);display:flex;justify-content:space-between}
+.panel .n{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:4px 0}
+.panel .n small{font-size:16px;color:var(--fg-muted);font-weight:500}
+.panel canvas{width:100%;height:46px;display:block}
+
+/* topology */
+.topo{margin-top:40px;padding:20px;display:grid;grid-template-columns:1fr 300px;gap:20px}
+@media(max-width:900px){.topo{grid-template-columns:1fr}}
+#topo svg{width:100%;height:auto}
+.node rect{fill:var(--muted);stroke:var(--border);stroke-width:1.5;transition:stroke .2s,fill .2s}
+.node text{fill:var(--fg);font:600 13px var(--sans);pointer-events:none}
+.node text.sub{fill:var(--fg-muted);font:400 10.5px var(--mono)}
+.node{cursor:pointer;outline:none}
+.node:hover rect,.node:focus rect,.node.on rect{stroke:var(--accent);fill:#12301f}
+.edge{stroke:var(--border);stroke-width:1.5;fill:none}
+.edge.on{stroke:var(--accent)}
+.pkt{fill:var(--accent);filter:drop-shadow(0 0 4px var(--accent))}
+.inspect{padding:18px;font-size:14px}
+.inspect h3{font-size:18px;margin:6px 0 8px}
+.inspect p{color:var(--fg-muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font:500 12px var(--mono);padding:4px 9px;border-radius:6px;background:var(--muted);border:1px solid var(--border);white-space:nowrap}
+
+/* pipeline */
+.pipe{display:flex;align-items:center;gap:0;margin:40px 0 20px;overflow-x:auto;padding:8px 2px 14px}
+.stage{flex:1;min-width:190px;text-align:left;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--fg);font:inherit;transition:border-color .2s,transform .2s}
+.stage:hover{transform:translateY(-2px)}
+.stage.on{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+.stage .s{display:flex;align-items:center;gap:8px;font:600 11px var(--mono);color:var(--accent);text-transform:uppercase}
+.stage .s.run{color:var(--accent-2)}
+.stage .s.run .dot{background:var(--accent-2);animation:pulse 1.4s infinite}
+.stage b{display:block;margin-top:6px;font-size:15px}
+.stage small{color:var(--fg-muted);font:12px var(--mono)}
+.link{min-width:28px;height:2px;background:var(--border);position:relative;overflow:hidden}
+.link::after{content:"";position:absolute;inset:0;width:40%;background:var(--accent);animation:flow 1.6s linear infinite}
+@keyframes flow{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
+.log{padding:22px;font:13.5px/1.8 var(--mono);min-height:280px}
+.log .hd{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:12px}
+.log .hd b{font:700 17px var(--sans)}
+.log .ln{display:flex;gap:14px;opacity:0;transform:translateY(4px);animation:in .35s forwards}
+.log .ln span:first-child{color:#475569;user-select:none;min-width:22px;text-align:right}
+.log .ok{color:var(--accent)}
+@keyframes in{to{opacity:1;transform:none}}
+
+/* plan */
+.plan-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 14px}
+.tab{font:500 13px var(--mono);padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--fg-muted);cursor:pointer;min-height:40px}
+.tab.on{color:#0F172A;background:var(--accent);border-color:var(--accent)}
+.plan{padding:22px;font:14px/1.9 var(--mono);overflow-x:auto}
+.plan .add{color:var(--accent)}.plan .c{color:var(--fg-muted)}.plan .y{color:var(--warn)}
+.plan .res{display:block;cursor:default;border-radius:4px;padding:0 6px;margin:0 -6px}
+.plan .res:hover{background:var(--muted)}
+
+/* terminal */
+.term{margin-top:36px;font:14px/1.7 var(--mono);overflow:hidden}
+.term .top{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--muted)}
+.term .top span{color:var(--fg-muted);font-size:12px}
+#out{height:380px;overflow-y:auto;padding:16px 18px;white-space:pre-wrap;word-break:break-word}
+#out .p{color:var(--accent)}#out .e{color:var(--danger)}#out .h{color:var(--accent-2)}#out .m{color:var(--fg-muted)}
+.inrow{display:flex;gap:8px;padding:0 18px 16px}
+.inrow label{color:var(--accent);white-space:nowrap}
+#cmd{flex:1;background:transparent;border:0;color:var(--fg);font:inherit;outline:none;caret-color:var(--accent)}
+.hints{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hints button{font:12px var(--mono);cursor:pointer;color:var(--fg-muted);min-height:34px}
+.hints button:hover{color:var(--fg);border-color:var(--accent)}
+
+/* certs + contact */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.cert{padding:20px;transition:transform .25s,border-color .25s}
+.cert:hover{transform:translateY(-4px);border-color:var(--accent)}
+.cert small{font:12px var(--mono);color:var(--accent)}
+.cert b{display:block;margin-top:6px}
+.cta{text-align:center;padding:64px 24px;background:radial-gradient(ellipse at top,rgba(34,197,94,.12),transparent 70%),var(--card)}
+.cta h2{font-size:clamp(32px,5vw,56px)}
+.cta .hero-cta{justify-content:center}
+footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:center}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--card);border:1px solid var(--accent);padding:12px 18px;border-radius:10px;font:13px var(--mono);transition:transform .35s;z-index:99}
+#toast.show{transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .pkt{display:none}
+}
+</style>
+</head>
+<body>
+<div id="grid"></div><div id="glow"></div>
+
+<nav aria-label="Primary">
+  <div class="wrap">
+    <a href="#hero" class="logo" style="text-decoration:none">kiril<b>@</b>prod:~$</a>
+    <ul>
+      <li><a href="#metrics">Metrics</a></li>
+      <li><a href="#topology">Infra</a></li>
+      <li><a href="#pipeline">Career</a></li>
+      <li><a href="#plan">Skills</a></li>
+      <li><a href="#shell">Shell</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div id="progress"></div>
+</nav>
+
+<main>
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="status"><span class="dot"></span>all systems operational · Skopje, MK</span>
+      <h1>Kiril<br><span class="grad">Milosevski</span></h1>
+      <p class="role" aria-live="polite"><span id="typed"></span><span class="cur" aria-hidden="true"></span></p>
+      <p class="lead" style="margin-top:18px">DevOps Engineer designing and operating production AWS infrastructure for SaaS platforms. Terraform, ECS, Kubernetes, CI/CD, observability, security, and cloud cost that stays sane.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#contact"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>Get in touch</a>
+        <a class="btn" href="cv.pdf" download><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Download CV</a>
+        <a class="btn" href="#shell"><svg class="i" viewBox="0 0 24 24"><path d="m4 17 6-5-6-5M12 19h8"/></svg>Open shell</a>
+      </div>
+    </div>
+    <div class="card fetch rv" aria-label="System summary">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div><span class="k">kiril</span>@<span class="k">prod</span></div>
+      <div class="c">-----------------------</div>
+      <div><span class="k">Role</span>: <span class="v">DevOps Engineer</span></div>
+      <div><span class="k">Uptime</span>: <span class="v" id="uptime"></span></div>
+      <div><span class="k">Cloud</span>: <span class="v">AWS (EC2 · ECS · Lambda · IAM)</span></div>
+      <div><span class="k">IaC</span>: <span class="v">Terraform</span></div>
+      <div><span class="k">Orchestration</span>: <span class="v">ECS · Kubernetes · Helm · Argo CD</span></div>
+      <div><span class="k">CI/CD</span>: <span class="v">GitHub Actions · GitLab CI</span></div>
+      <div><span class="k">Observability</span>: <span class="v">Grafana · Prometheus · Loki</span></div>
+      <div><span class="k">Security</span>: <span class="v">Trivy · Gitleaks · OIDC</span></div>
+      <div><span class="k">Shell</span>: <span class="v">bash · LLM multi-agent</span></div>
+      <div class="swatch"><span style="background:#EF4444"></span><span style="background:#F59E0B"></span><span style="background:#22C55E"></span><span style="background:#38BDF8"></span><span style="background:#A78BFA"></span><span style="background:#F8FAFC"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <div class="wrap">
+    <p class="eyebrow">/grafana/d/kiril-overview</p>
+    <h2 class="rv">Production, by the numbers.</h2>
+    <p class="lead rv">The dashboard I'd show in a stand-up. Every number comes straight from the work below.</p>
+    <div class="metrics" id="metricGrid"></div>
+  </div>
+</section>
+
+<section id="topology">
+  <div class="wrap">
+    <p class="eyebrow">architecture.tf</p>
+    <h2 class="rv">An infra map I actually build.</h2>
+    <p class="lead rv">Pick any component to see how I run it. Based on the B2B2C iGaming platform I designed end to end.</p>
+    <div class="card topo rv">
+      <div id="topo"></div>
+      <div class="inspect card" id="inspect" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline">
+  <div class="wrap">
+    <p class="eyebrow">.github/workflows/career.yml</p>
+    <h2 class="rv">Career, deployed as a pipeline.</h2>
+    <p class="lead rv">Each job is a stage. Click one to read its logs.</p>
+    <div class="pipe rv" id="stages" role="tablist" aria-label="Career stages"></div>
+    <div class="card log rv" id="log" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <p class="eyebrow">$ terraform plan -target=skills</p>
+    <h2 class="rv">Skills as a plan.</h2>
+    <p class="lead rv">Filter by module. Nothing is destroyed, everything is added.</p>
+    <div class="plan-tabs rv" id="tabs" role="tablist"></div>
+    <div class="card plan rv" id="planOut"></div>
+  </div>
+</section>
+
+<section id="shell">
+  <div class="wrap">
+    <p class="eyebrow">ssh visitor@kiril.dev</p>
+    <h2 class="rv">Or just SSH in.</h2>
+    <p class="lead rv">A real little shell. Type <code>help</code>. There are a few easter eggs.</p>
+    <div class="card term rv">
+      <div class="top"><div class="bar" style="margin:0"><i></i><i></i><i></i></div><span>visitor@kiril-prod: ~</span></div>
+      <div id="out" role="log" aria-live="polite"></div>
+      <form class="inrow" id="form" autocomplete="off">
+        <label for="cmd">visitor@prod:~$</label>
+        <input id="cmd" spellcheck="false" aria-label="Terminal command">
+      </form>
+    </div>
+    <div class="hints" id="hints"></div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <p class="eyebrow">~/.certs</p>
+    <h2 class="rv">Education and certifications.</h2>
+    <div class="certs" id="certGrid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="card cta rv">
+      <p class="eyebrow">$ terraform apply</p>
+      <h2>Let's ship something reliable.</h2>
+      <p class="lead" style="margin:0 auto 8px">Open to DevOps, platform, and cloud infrastructure work.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="mailto:kiril_milosevski@yahoo.com"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>kiril_milosevski@yahoo.com</a>
+        <button class="btn" id="copyEmail" type="button"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy email</button>
+        <a class="btn" href="tel:+38976659775"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+389 76 659 775</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Kiril Milosevski · built as a single static file · <span id="lat"></span></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const CV = {
+  email: 'kiril_milosevski@yahoo.com',
+  roles: ['DevOps Engineer', 'Terraform on AWS', 'CI/CD & GitOps', 'Observability nerd', 'Incident responder'],
+  careerStart: new Date('2022-08-01'),
+  metrics: [
+    { title: 'containers_running', value: 100, suffix: '', prefix: '50–', note: 'ECS · across client envs' },
+    { title: 'prod_clients_monitored', value: 30, suffix: '', note: 'Terraform CloudWatch alarms' },
+    { title: 'ci_workflows_owned', value: 20, prefix: '~', note: 'GH Actions · GitLab CI' },
+    { title: 'years_in_prod', value: 4, suffix: '+', note: 'since Aug 2022' },
+  ],
+  jobs: [
+    { id: 'btobet', org: 'BtoBet', role: 'Software Engineer', when: 'Aug 2022 – Dec 2024', status: 'passed',
+      tags: ['AWS', 'SQL', 'Linux', 'Integrations'],
+      log: ['Set up web and API servers for new client environments', 'Configured, deployed and monitored AWS services', 'Wrote SQL for onboarding and database migrations', 'Integrated third-party service providers into the platform', 'Troubleshot app and infra issues across client environments'] },
+    { id: 'aristocrat', org: 'Aristocrat Interactive', role: 'TechOps Engineer', when: 'Jan 2025 – Mar 2026', status: 'passed',
+      tags: ['Terraform', 'CloudWatch', 'Datadog', 'Zabbix', 'Jira'],
+      log: ['Led Terraform migration of monitoring for 30 prod clients (Pingdom → UptimeRobot)', 'Built Terraform-managed CloudWatch alarms and metrics for 30 prod clients', 'Automated Redis flushes and password resets via Jira + AWS', 'Oversaw EC2, ECS, Lambda, API Gateway, CloudFront, WAF, Athena', 'Maintained Datadog and Zabbix, improved availability'] },
+    { id: 'igaming', org: 'B2B2C iGaming Platform', role: 'DevOps Engineer · independent', when: 'Feb 2026 – Present', status: 'running',
+      tags: ['VPC', 'ECS Service Connect', 'Valkey', 'Keycloak', 'OIDC', 'Trivy'],
+      log: ['Designed and built full AWS infra for a modular B2B2C marketplace', 'Terraform persistent + disposable stacks: VPC, IAM, ECR, ECS, EBS, Valkey, SSM', 'Changed-service ECS deploys with digest-pinned revisions for safe rollback', 'Prisma DB migrations as pipeline tasks', 'Security gates with Trivy, Gitleaks, GitHub OIDC, OpenCode multi-agent flows'] },
+    { id: 'unit', org: 'The Unit', role: 'DevOps Engineer · remote', when: 'Apr 2026 – Present', status: 'running',
+      tags: ['Terraform', 'VPN', 'DNS', 'Grafana', 'Prometheus', 'Alloy'],
+      log: ['Own full AWS infra (Terraform) for multiple clients, dev → prod', 'Operate 50–100 containers in production', 'Own company-wide enterprise VPN architecture and access controls', 'Run high-availability DNS across hybrid cloud', 'Own ~20 CI/CD workflows: ECS deploys, Terraform, PR checks, scanning', 'Grafana / Prometheus / Alloy / CloudWatch stacks, incident response'] },
+  ],
+  skills: {
+    cloud: ['AWS', 'EC2', 'ECS', 'ECR', 'CloudWatch', 'Lambda', 'Terraform', 'IAM', 'Networking', 'DNS', 'VPN', 'Cloudflare'],
+    delivery: ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'GitHub Actions', 'GitLab CI/CD'],
+    observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'Datadog', 'Zabbix', 'Alerting', 'Incident response'],
+    data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'Trivy', 'Gitleaks'],
+    ai: ['OpenCode', 'LLM tools', 'Multi-agent workflows'],
+  },
+  topology: {
+    nodes: [
+      { id: 'user', x: 20, y: 150, t: 'Users', s: 'consumer · operator', d: 'Consumers and operators hit the platform through Cloudflare. No public origin exposed.', tags: ['Cloudflare'] },
+      { id: 'cf', x: 170, y: 150, t: 'Cloudflare', s: 'tunnel · DNS', d: 'Cloudflare Tunnel plus high-availability DNS. Routing without opening inbound ports.', tags: ['Cloudflare Tunnel', 'DNS', 'WAF'] },
+      { id: 'edge', x: 320, y: 150, t: 'Traefik', s: 'oauth2-proxy', d: 'Traefik routes to services. OAuth2 Proxy and Keycloak enforce auth before any request reaches an app.', tags: ['Traefik', 'Keycloak', 'OAuth2 Proxy'] },
+      { id: 'api', x: 480, y: 50, t: 'API', s: 'ECS service', d: 'Containerized API on ECS with Service Connect. Deployed only when changed, digest-pinned for rollback.', tags: ['ECS', 'Service Connect', 'ECR'] },
+      { id: 'web', x: 480, y: 150, t: 'Consumer / Operator', s: 'ECS services', d: 'Front-facing services isolated per tenant concern, least-privilege IAM per task.', tags: ['ECS', 'IAM'] },
+      { id: 'ingest', x: 480, y: 250, t: 'Ingest + Reports', s: 'ECS tasks', d: 'Data ingestion and reporting services, scheduled and scaled independently.', tags: ['ECS', 'CloudWatch Logs'] },
+      { id: 'pg', x: 650, y: 90, t: 'PostgreSQL', s: 'Prisma migrations', d: 'Migrations run as pipeline tasks before rollout, so schema and code ship together.', tags: ['PostgreSQL', 'Prisma', 'Encrypted EBS'] },
+      { id: 'cache', x: 650, y: 210, t: 'Valkey', s: 'cache · sessions', d: 'Valkey for caching and sessions, in private subnets, encrypted at rest.', tags: ['Valkey', 'VPC'] },
+      { id: 'obs', x: 320, y: 290, t: 'Observability', s: 'Grafana · Alloy', d: 'Grafana, Prometheus, Alloy, Loki and CloudWatch alarms. Dashboards per client, alerts that page for real reasons.', tags: ['Grafana', 'Prometheus', 'Loki', 'Alloy'] },
+      { id: 'ci', x: 170, y: 290, t: 'CI/CD', s: 'GH Actions · OIDC', d: 'GitHub OIDC into AWS (no static keys), Trivy and Gitleaks gates, Terraform plan on every PR.', tags: ['GitHub Actions', 'OIDC', 'Trivy', 'Gitleaks', 'Terraform'] },
+    ],
+    edges: [['user','cf'],['cf','edge'],['edge','api'],['edge','web'],['edge','ingest'],['api','pg'],['web','cache'],['api','cache'],['ingest','pg'],['ingest','obs'],['ci','edge'],['ci','obs']],
+  },
+  certs: [
+    { k: 'BSc', t: 'Software Engineering', o: 'University American College Skopje · 2019–2022' },
+    { k: 'CLF-C02', t: 'AWS Cloud Practitioner', o: 'Amazon Web Services' },
+    { k: 'Semos', t: 'Architecting on AWS', o: 'Semos Education' },
+    { k: 'Semos', t: 'Cloud Operations on AWS', o: 'Semos Education' },
+    { k: 'Attainable', t: 'Grafana Foundations', o: 'Attainable' },
+  ],
+};
+
+const $ = s => document.querySelector(s);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('show'), 2200); }
+
+(function typer() {
+  const el = $('#typed'); let r = 0, i = 0, del = false;
+  if (reduced) { el.textContent = CV.roles[0]; return; }
+  (function step() {
+    const w = CV.roles[r];
+    el.textContent = w.slice(0, i += del ? -1 : 1);
+    if (!del && i === w.length) { del = true; return setTimeout(step, 1600); }
+    if (del && i === 0) { del = false; r = (r + 1) % CV.roles.length; }
+    setTimeout(step, del ? 35 : 70);
+  })();
+})();
+
+function uptime() {
+  const ms = Date.now() - CV.careerStart; const d = Math.floor(ms / 864e5);
+  return `${Math.floor(d / 365)}y ${Math.floor((d % 365) / 30)}m ${d % 30}d`;
+}
+$('#uptime').textContent = uptime();
+
+$('#metricGrid').innerHTML = CV.metrics.map((m, i) => `
+  <div class="card panel rv"><div class="t"><span>${m.title}</span><span style="color:var(--accent)">●</span></div>
+  <div class="n" data-v="${m.value}" data-p="${m.prefix || ''}" data-s="${m.suffix || ''}">0</div>
+  <canvas data-i="${i}" aria-hidden="true"></canvas><div class="t"><span>${m.note}</span></div></div>`).join('');
+
+function countUp(el) {
+  const v = +el.dataset.v, p = el.dataset.p, s = el.dataset.s, t0 = performance.now();
+  const f = now => { const k = Math.min(1, (now - t0) / 1400); el.innerHTML = `${p}${Math.round(v * (1 - Math.pow(1 - k, 3)))}<small>${s}</small>`; if (k < 1) requestAnimationFrame(f); };
+  reduced ? (el.innerHTML = `${p}${v}<small>${s}</small>`) : requestAnimationFrame(f);
+}
+
+function sparkline(c) {
+  const dpr = devicePixelRatio || 1, ctx = c.getContext('2d');
+  const pts = Array.from({ length: 40 }, (_, i) => 0.5 + Math.sin(i / 3 + +c.dataset.i) * 0.2 + Math.random() * 0.15);
+  const draw = () => {
+    const w = c.clientWidth, h = c.clientHeight; c.width = w * dpr; c.height = h * dpr; ctx.scale(dpr, dpr);
+    const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, 'rgba(34,197,94,.35)'); g.addColorStop(1, 'rgba(34,197,94,0)');
+    ctx.beginPath(); pts.forEach((p, i) => ctx.lineTo(i / (pts.length - 1) * w, h - p * h));
+    ctx.strokeStyle = '#22C55E'; ctx.lineWidth = 1.6; ctx.stroke();
+    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.fillStyle = g; ctx.fill();
+  };
+  draw();
+  if (!reduced) setInterval(() => { pts.shift(); pts.push(Math.max(.1, Math.min(.95, pts.at(-1) + (Math.random() - .5) * .2))); draw(); }, 900);
+}
+
+(function topology() {
+  const { nodes, edges } = CV.topology, W = 150, H = 54, by = Object.fromEntries(nodes.map(n => [n.id, n]));
+  const c = n => [n.x + W / 2, n.y + H / 2];
+  const path = ([a, b]) => { const [x1, y1] = c(by[a]), [x2, y2] = c(by[b]), mx = (x1 + x2) / 2; return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`; };
+  $('#topo').innerHTML = `<svg viewBox="0 0 820 360" role="group" aria-label="Infrastructure topology">
+    ${edges.map((e, i) => `<path class="edge" id="e${i}" data-a="${e[0]}" data-b="${e[1]}" d="${path(e)}"/>`).join('')}
+    ${edges.map((e, i) => `<circle class="pkt" r="3"><animateMotion dur="${2 + (i % 4) * .6}s" repeatCount="indefinite" begin="${i * .3}s"><mpath href="#e${i}"/></animateMotion></circle>`).join('')}
+    ${nodes.map(n => `<g class="node" tabindex="0" role="button" aria-label="${n.t}" data-id="${n.id}" transform="translate(${n.x},${n.y})">
+      <rect width="${W}" height="${H}" rx="10"/><text x="14" y="23">${n.t}</text><text class="sub" x="14" y="40">${n.s}</text></g>`).join('')}
+  </svg>`;
+  const select = id => {
+    const n = by[id];
+    document.querySelectorAll('.node').forEach(g => g.classList.toggle('on', g.dataset.id === id));
+    document.querySelectorAll('.edge').forEach(p => p.classList.toggle('on', p.dataset.a === id || p.dataset.b === id));
+    $('#inspect').innerHTML = `<p class="eyebrow">resource "${id}"</p><h3>${n.t}</h3><p>${n.d}</p><div class="chips">${n.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>`;
+  };
+  document.querySelectorAll('.node').forEach(g => {
+    g.addEventListener('click', () => select(g.dataset.id));
+    g.addEventListener('mouseenter', () => select(g.dataset.id));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(g.dataset.id); } });
+  });
+  select('ci');
+})();
+
+(function pipeline() {
+  const jobs = CV.jobs;
+  $('#stages').innerHTML = jobs.map((j, i) => `${i ? '<div class="link" aria-hidden="true"></div>' : ''}
+    <button class="stage" role="tab" data-i="${i}" aria-selected="false">
+      <span class="s ${j.status === 'running' ? 'run' : ''}"><span class="dot"></span>${j.status}</span>
+      <b>${j.org}</b><small>${j.when}</small></button>`).join('');
+  const show = i => {
+    const j = jobs[i];
+    document.querySelectorAll('.stage').forEach(b => { const on = +b.dataset.i === i; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    $('#log').innerHTML = `<div class="hd"><div><b>${j.role}</b><div style="color:var(--fg-muted)">${j.org} · ${j.when}</div></div><div class="chips" style="margin:0">${j.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div></div>
+      ${j.log.map((l, k) => `<div class="ln" style="animation-delay:${k * 110}ms"><span>${k + 1}</span><span><span class="ok">✓</span> ${l}</span></div>`).join('')}
+      <div class="ln" style="animation-delay:${j.log.length * 110}ms"><span>${j.log.length + 1}</span><span class="${j.status === 'running' ? '' : 'ok'}" style="${j.status === 'running' ? 'color:var(--accent-2)' : ''}">${j.status === 'running' ? '● job still running…' : 'Job succeeded'}</span></div>`;
+  };
+  document.querySelectorAll('.stage').forEach(b => b.addEventListener('click', () => show(+b.dataset.i)));
+  show(jobs.length - 1);
+})();
+
+(function plan() {
+  const mods = ['all', ...Object.keys(CV.skills)];
+  $('#tabs').innerHTML = mods.map(m => `<button class="tab" role="tab" data-m="${m}">${m === 'all' ? 'all modules' : 'module.' + m}</button>`).join('');
+  const render = m => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.m === m));
+    const sel = m === 'all' ? Object.keys(CV.skills) : [m];
+    const count = sel.reduce((a, k) => a + CV.skills[k].length, 0);
+    $('#planOut').innerHTML = `<div class="c">Terraform will perform the following actions:</div><br>` +
+      sel.map(k => CV.skills[k].map(s => `<span class="res"><span class="add">  + resource</span> "skill" "${k}_${s.toLowerCase().replace(/[^a-z0-9]+/g, '_')}" { name = <span class="y">"${esc(s)}"</span> }</span>`).join('')).join('') +
+      `<br><div>Plan: <span class="add">${count} to add</span>, 0 to change, <span class="y">0 to destroy</span>.</div>`;
+  };
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => render(t.dataset.m)));
+  render('all');
+})();
+
+(function shell() {
+  const out = $('#out'), input = $('#cmd'), hist = []; let hi = 0;
+  const print = (html, cls = '') => { const d = document.createElement('div'); if (cls) d.className = cls; d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; };
+  const cmds = {
+    help: () => `<span class="h">available commands</span>
+  whoami        who is this
+  experience    work history
+  skills        tech stack
+  contact       how to reach me
+  cv            download the PDF
+  kubectl get pods
+  terraform plan
+  clear         wipe the screen
+<span class="m">…and a few not listed.</span>`,
+    whoami: () => 'Kiril Milosevski. DevOps Engineer from Skopje, North Macedonia.\nI design, automate and operate AWS infra that stays up and stays cheap.',
+    experience: () => CV.jobs.slice().reverse().map(j => `<span class="p">${j.when.padEnd(22)}</span> ${j.role} @ ${j.org}`).join('\n'),
+    skills: () => Object.entries(CV.skills).map(([k, v]) => `<span class="h">${k.padEnd(14)}</span>${v.join(', ')}`).join('\n'),
+    contact: () => `email  <a href="mailto:${CV.email}">${CV.email}</a>\nphone  +389 76 659 775\nwhere  Skopje, North Macedonia`,
+    cv: () => { const a = document.createElement('a'); a.href = 'cv.pdf'; a.download = ''; a.click(); return '<span class="p">downloading cv.pdf…</span>'; },
+    'kubectl get pods': () => `NAME                         READY   STATUS    RESTARTS   AGE
+kiril-devops-7f9c6d-x2k      1/1     Running   0          ${uptime()}
+coffee-sidecar-5d8b-qq1      1/1     Running   42         ${uptime()}
+burnout-8c1a-zz0             0/1     Evicted   0          never`,
+    'terraform plan': () => 'Plan: <span class="p">1 new teammate to add</span>, 0 to change, 0 to destroy.\nRun <span class="h">contact</span> to apply.',
+    'terraform destroy': () => '<span class="e">Error: prevent_destroy = true on resource "kiril.career". Nice try.</span>',
+    'sudo rm -rf /': () => '<span class="e">visitor is not in the sudoers file. This incident will be reported to the on-call.</span>',
+    uptime: () => `up ${uptime()}, load average: 0.42, 0.37, 0.31`,
+    ls: () => 'experience/  skills/  certs/  cv.pdf  .secrets (gitleaks says no)',
+    'cat .secrets': () => '<span class="e">gitleaks: 1 leak detected. Blocked at pre-commit. You get the idea.</span>',
+    ping: () => 'PING kiril.dev: 64 bytes, time=0.4 ms\n<span class="p">he answers emails fast too.</span>',
+    exit: () => 'logout. Connection to kiril.dev closed. (Not really, scroll down to hire me.)',
+  };
+  const run = raw => {
+    const c = raw.trim().replace(/\s+/g, ' ');
+    print(`<span class="p">visitor@prod:~$</span> ${esc(c)}`);
+    if (!c) return;
+    hist.push(c); hi = hist.length;
+    if (c === 'clear') { out.innerHTML = ''; return; }
+    const f = cmds[c.toLowerCase()];
+    print(f ? f() : `<span class="e">command not found: ${esc(c)}</span>. Try <span class="h">help</span>.`);
+  };
+  print(`<span class="p">Welcome to kiril-prod (Amazon Linux 2023, kernel 6.x-devops)</span>
+<span class="m">Last login: ${new Date().toDateString()} from your-browser</span>
+Type <span class="h">help</span> to begin.`);
+  $('#form').addEventListener('submit', e => { e.preventDefault(); run(input.value); input.value = ''; });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' && hi > 0) { input.value = hist[--hi]; e.preventDefault(); }
+    if (e.key === 'ArrowDown') { hi = Math.min(hist.length, hi + 1); input.value = hist[hi] || ''; }
+    if (e.key === 'Tab') { e.preventDefault(); const m = Object.keys(cmds).concat('clear').find(k => k.startsWith(input.value)); if (m) input.value = m; }
+  });
+  $('#hints').innerHTML = ['help', 'whoami', 'experience', 'kubectl get pods', 'terraform destroy'].map(h => `<button class="btn" type="button">${h}</button>`).join('');
+  $('#hints').addEventListener('click', e => { if (e.target.closest('button')) { run(e.target.textContent); input.focus({ preventScroll: true }); } });
+  $('.term').addEventListener('click', () => input.focus({ preventScroll: true }));
+})();
+
+$('#certGrid').innerHTML = CV.certs.map(c => `<div class="card cert rv"><small>${c.k}</small><b>${c.t}</b><span style="color:var(--fg-muted);font-size:14px">${c.o}</span></div>`).join('');
+
+$('#copyEmail').addEventListener('click', async () => { try { await navigator.clipboard.writeText(CV.email); toast('✓ email copied to clipboard'); } catch { toast(CV.email); } });
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll?.('.n').forEach(countUp);
+  e.target.querySelectorAll?.('canvas').forEach(sparkline);
+  io.unobserve(e.target);
+}), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+const links = [...document.querySelectorAll('nav ul a')];
+addEventListener('scroll', () => {
+  const h = document.documentElement; $('#progress').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  let cur = ''; document.querySelectorAll('main section').forEach(s => { if (scrollY >= s.offsetTop - 140) cur = s.id; });
+  links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+}, { passive: true });
+if (!reduced) addEventListener('pointermove', e => { const g = $('#glow'); g.style.left = e.clientX + 'px'; g.style.top = e.clientY + 'px'; }, { passive: true });
+
+const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let kp = 0;
+addEventListener('keydown', e => { kp = e.key === konami[kp] ? kp + 1 : 0; if (kp === konami.length) { kp = 0; document.documentElement.style.setProperty('--accent', '#A78BFA'); toast('chaos engineering mode enabled'); } });
+
+$('#lat').textContent = `rendered in ${Math.round(performance.now())} ms`;
+</script>
+</body>
+</html>
