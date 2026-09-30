@@ -58,6 +58,11 @@ h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webki
 .role .cur{display:inline-block;width:10px;height:1.1em;background:var(--accent);vertical-align:-3px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.ai-line{margin-top:12px;padding:12px 14px;border:1px solid var(--border);border-left:3px solid var(--accent-2);border-radius:10px;background:var(--card);font-size:15px}
+.ai-line b{color:var(--fg)}
+.socials{display:flex;gap:16px;margin-top:20px;font:500 14px var(--mono)}
+.socials a{color:var(--fg-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.socials a:hover{color:var(--accent)}
 .fetch{padding:22px;font:13.5px/1.75 var(--mono);box-shadow:0 30px 80px -30px rgba(34,197,94,.25)}
 .bar{display:flex;gap:7px;margin-bottom:14px}.bar i{width:11px;height:11px;border-radius:50%;background:#EF4444}.bar i:nth-child(2){background:#F59E0B}.bar i:nth-child(3){background:#22C55E}
 .fetch .k{color:var(--accent)}.fetch .v{color:var(--fg)}.fetch .c{color:var(--fg-muted)}
@@ -182,12 +187,14 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
       <span class="status"><span class="dot"></span>all systems operational · Skopje, MK</span>
       <h1>Kiril<br><span class="grad">Milosevski</span></h1>
       <p class="role" aria-live="polite"><span id="typed"></span><span class="cur" aria-hidden="true"></span></p>
-      <p class="lead" style="margin-top:18px">DevOps Engineer designing and operating production AWS infrastructure for SaaS platforms. Terraform, ECS, Kubernetes, CI/CD, observability, security, and cloud cost that stays sane.</p>
+      <p class="lead" style="margin-top:18px">DevOps Engineer designing and operating production AWS and Azure infrastructure for SaaS platforms. Terraform, ECS, Kubernetes, CI/CD, observability, security, and cloud cost that stays sane.</p>
+      <p class="lead ai-line"><b>AI-native ops.</b> I run infra work through Cursor agents: parallel subagents across Claude, GPT, and Grok, wired to Terraform, AWS, and GitHub over MCP, with my own skills for plan review, drift checks, and CI debugging. A human still approves every apply.</p>
       <div class="hero-cta">
         <a class="btn primary" href="#contact"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>Get in touch</a>
         <a class="btn" href="cv.pdf" download><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Download CV</a>
         <a class="btn" href="#shell"><svg class="i" viewBox="0 0 24 24"><path d="m4 17 6-5-6-5M12 19h8"/></svg>Open shell</a>
       </div>
+      <div class="socials" data-socials></div>
     </div>
     <div class="card fetch rv" aria-label="System summary">
       <div class="bar"><i></i><i></i><i></i></div>
@@ -195,13 +202,14 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
       <div class="c">-----------------------</div>
       <div><span class="k">Role</span>: <span class="v">DevOps Engineer</span></div>
       <div><span class="k">Uptime</span>: <span class="v" id="uptime"></span></div>
-      <div><span class="k">Cloud</span>: <span class="v">AWS (EC2 · ECS · Lambda · IAM)</span></div>
+      <div><span class="k">Cloud</span>: <span class="v">AWS · Azure</span></div>
       <div><span class="k">IaC</span>: <span class="v">Terraform</span></div>
       <div><span class="k">Orchestration</span>: <span class="v">ECS · Kubernetes · Helm · Argo CD</span></div>
       <div><span class="k">CI/CD</span>: <span class="v">GitHub Actions · GitLab CI</span></div>
-      <div><span class="k">Observability</span>: <span class="v">Grafana · Prometheus · Loki</span></div>
+      <div><span class="k">Observability</span>: <span class="v">Grafana · Prometheus · CloudWatch · Datadog</span></div>
       <div><span class="k">Security</span>: <span class="v">Trivy · Gitleaks · OIDC</span></div>
-      <div><span class="k">Shell</span>: <span class="v">bash · LLM multi-agent</span></div>
+      <div><span class="k">Shell</span>: <span class="v">Bash · Linux</span></div>
+      <div><span class="k">Agents</span>: <span class="v">Cursor · subagents · MCP · Claude/GPT/Grok</span></div>
       <div class="swatch"><span style="background:#EF4444"></span><span style="background:#F59E0B"></span><span style="background:#22C55E"></span><span style="background:#38BDF8"></span><span style="background:#A78BFA"></span><span style="background:#F8FAFC"></span></div>
     </div>
   </div>
@@ -282,6 +290,7 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
       <div class="hero-cta">
         <a class="btn primary" href="mailto:kiril_milosevski@yahoo.com"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>kiril_milosevski@yahoo.com</a>
         <button class="btn" id="copyEmail" type="button"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy email</button>
+        <span data-socials class="socials" style="margin:0"></span>
         <a class="btn" href="tel:+38976659775"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+389 76 659 775</a>
       </div>
     </div>
@@ -295,7 +304,8 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
 <script>
 const CV = {
   email: 'kiril_milosevski@yahoo.com',
-  roles: ['DevOps Engineer', 'Terraform on AWS', 'CI/CD & GitOps', 'Observability nerd', 'Incident responder'],
+  links: { GitHub: 'https://github.com/kiril-milosevski', LinkedIn: '' },
+  roles: ['DevOps Engineer', 'Terraform on AWS', 'Cursor · multi-agent workflows', 'CI/CD & GitOps', 'Observability nerd'],
   careerStart: new Date('2022-08-01'),
   metrics: [
     { title: 'containers_running', value: 100, suffix: '', prefix: '50–', note: 'ECS · across client envs' },
@@ -314,15 +324,17 @@ const CV = {
       tags: ['VPC', 'ECS Service Connect', 'Valkey', 'Keycloak', 'OIDC', 'Trivy'],
       log: ['Designed and built full AWS infra for a modular B2B2C marketplace', 'Terraform persistent + disposable stacks: VPC, IAM, ECR, ECS, EBS, Valkey, SSM', 'Changed-service ECS deploys with digest-pinned revisions for safe rollback', 'Prisma DB migrations as pipeline tasks', 'Security gates with Trivy, Gitleaks, GitHub OIDC, OpenCode multi-agent flows'] },
     { id: 'unit', org: 'The Unit', role: 'DevOps Engineer · remote', when: 'Apr 2026 – Present', status: 'running',
-      tags: ['Terraform', 'VPN', 'DNS', 'Grafana', 'Prometheus', 'Alloy'],
-      log: ['Own full AWS infra (Terraform) for multiple clients, dev → prod', 'Operate 50–100 containers in production', 'Own company-wide enterprise VPN architecture and access controls', 'Run high-availability DNS across hybrid cloud', 'Own ~20 CI/CD workflows: ECS deploys, Terraform, PR checks, scanning', 'Grafana / Prometheus / Alloy / CloudWatch stacks, incident response'] },
+      tags: ['Terraform', 'AWS', 'Azure', 'VPN', 'DNS', 'Grafana'],
+      log: ['Own full AWS infra (Terraform) for multiple clients, dev → prod', 'Azure IaC for a sports-tech client: Function Apps (Flex Consumption), API Management, Front Door + WAF, Cosmos DB', 'Azure secrets and identity: Key Vault, user-assigned managed identities, RBAC role assignments', 'Azure messaging and data: Service Bus, Storage queues/blobs, Managed Redis', 'Azure observability: Application Insights, Log Analytics, Monitor action groups', 'Terraform import and drift reconciliation of click-ops Azure resources', 'Operate 50–100 containers in production', 'Own company-wide enterprise VPN architecture and access controls', 'Run high-availability DNS across hybrid cloud', 'Own ~20 CI/CD workflows: ECS deploys, Terraform, PR checks, scanning', 'Grafana / Prometheus / Alloy / CloudWatch stacks, incident response'] },
   ],
   skills: {
-    cloud: ['AWS', 'EC2', 'ECS', 'ECR', 'CloudWatch', 'Lambda', 'Terraform', 'IAM', 'Networking', 'DNS', 'VPN', 'Cloudflare'],
+    aws: ['EC2', 'ECS', 'ECR', 'Lambda', 'IAM', 'API Gateway', 'CloudFront', 'WAF', 'Athena', 'SSM'],
+    azure: ['Function Apps', 'API Management', 'Front Door + WAF', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'RBAC', 'Service Bus', 'Storage', 'Managed Redis', 'Application Insights', 'Log Analytics'],
+    platform: ['Terraform', 'Networking', 'DNS', 'VPN', 'Cloudflare'],
     delivery: ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'GitHub Actions', 'GitLab CI/CD'],
-    observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'Datadog', 'Zabbix', 'Alerting', 'Incident response'],
+    observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'CloudWatch', 'Datadog', 'Zabbix', 'Application Insights', 'Alerting', 'Incident response'],
     data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'Trivy', 'Gitleaks'],
-    ai: ['OpenCode', 'LLM tools', 'Multi-agent workflows'],
+    ai: ['Cursor', 'Parallel subagents', 'Claude', 'GPT', 'Grok', 'MCP servers', 'Custom agent skills', 'OpenCode'],
   },
   topology: {
     nodes: [
@@ -460,16 +472,27 @@ function sparkline(c) {
   whoami        who is this
   experience    work history
   skills        tech stack
+  agents        how I work with AI
+  azure         Azure services I run
   contact       how to reach me
   cv            download the PDF
   kubectl get pods
   terraform plan
   clear         wipe the screen
 <span class="m">…and a few not listed.</span>`,
-    whoami: () => 'Kiril Milosevski. DevOps Engineer from Skopje, North Macedonia.\nI design, automate and operate AWS infra that stays up and stays cheap.',
+    whoami: () => 'Kiril Milosevski. DevOps Engineer from Skopje, North Macedonia.\nI design, automate and operate AWS infra that stays up and stays cheap.\nI work in Cursor, with multi-agent workflows across a lot of models.',
     experience: () => CV.jobs.slice().reverse().map(j => `<span class="p">${j.when.padEnd(22)}</span> ${j.role} @ ${j.org}`).join('\n'),
     skills: () => Object.entries(CV.skills).map(([k, v]) => `<span class="h">${k.padEnd(14)}</span>${v.join(', ')}`).join('\n'),
-    contact: () => `email  <a href="mailto:${CV.email}">${CV.email}</a>\nphone  +389 76 659 775\nwhere  Skopje, North Macedonia`,
+    contact: () => [`email   <a href="mailto:${CV.email}">${CV.email}</a>`, 'phone   +389 76 659 775', 'where   Skopje, North Macedonia',
+      ...liveLinks.map(([n, u]) => `${n.toLowerCase().padEnd(8)}<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`)].join('\n'),
+    agents: () => `<span class="h">how I work with AI</span>
+  editor     Cursor, agent mode
+  models     Claude · GPT · Grok, picked per task
+  fan-out    parallel subagents: explore, review, debug
+  tools      MCP: Terraform registry, AWS docs, GitHub
+  skills     tf plan review · drift checks · CI triage
+  guardrail  a human approves every apply`,
+    azure: () => CV.skills.azure.map(s => `<span class="p">+</span> ${s}`).join('\n'),
     cv: () => { const a = document.createElement('a'); a.href = 'cv.pdf'; a.download = ''; a.click(); return '<span class="p">downloading cv.pdf…</span>'; },
     'kubectl get pods': () => `NAME                         READY   STATUS    RESTARTS   AGE
 kiril-devops-7f9c6d-x2k      1/1     Running   0          ${uptime()}
@@ -502,12 +525,16 @@ Type <span class="h">help</span> to begin.`);
     if (e.key === 'ArrowDown') { hi = Math.min(hist.length, hi + 1); input.value = hist[hi] || ''; }
     if (e.key === 'Tab') { e.preventDefault(); const m = Object.keys(cmds).concat('clear').find(k => k.startsWith(input.value)); if (m) input.value = m; }
   });
-  $('#hints').innerHTML = ['help', 'whoami', 'experience', 'kubectl get pods', 'terraform destroy'].map(h => `<button class="btn" type="button">${h}</button>`).join('');
+  $('#hints').innerHTML = ['help', 'agents', 'azure', 'kubectl get pods', 'terraform destroy'].map(h => `<button class="btn" type="button">${h}</button>`).join('');
   $('#hints').addEventListener('click', e => { if (e.target.closest('button')) { run(e.target.textContent); input.focus({ preventScroll: true }); } });
   $('.term').addEventListener('click', () => input.focus({ preventScroll: true }));
 })();
 
 $('#certGrid').innerHTML = CV.certs.map(c => `<div class="card cert rv"><small>${c.k}</small><b>${c.t}</b><span style="color:var(--fg-muted);font-size:14px">${c.o}</span></div>`).join('');
+
+const liveLinks = Object.entries(CV.links).filter(([, url]) => url);
+document.querySelectorAll('[data-socials]').forEach(el => el.innerHTML = liveLinks.map(([name, url]) =>
+  `<a href="${url}" target="_blank" rel="noopener noreferrer"><svg class="i" viewBox="0 0 24 24"><path d="M10 14 21 3m0 0h-6m6 0v6M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>${name}</a>`).join(''));
 
 $('#copyEmail').addEventListener('click', async () => { try { await navigator.clipboard.writeText(CV.email); toast('✓ email copied to clipboard'); } catch { toast(CV.email); } });
 
