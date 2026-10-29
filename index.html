@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kiril Milosevski · DevOps Engineer</title>
-<meta name="description" content="Kiril Milosevski, DevOps Engineer in Skopje. AWS, Terraform, ECS, Kubernetes, CI/CD, observability.">
+<meta name="description" content="Kiril Milosevski, DevOps Engineer in Skopje. AWS, Azure, Terraform, ECS, Kubernetes, CI/CD, observability.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -189,7 +189,7 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
       <span class="status"><span class="dot"></span>all systems operational · Skopje, MK</span>
       <h1>Kiril<br><span class="grad">Milosevski</span></h1>
       <p class="role" aria-live="polite"><span id="typed"></span><span class="cur" aria-hidden="true"></span></p>
-      <p class="lead" style="margin-top:18px">DevOps Engineer designing and operating production AWS infrastructure for SaaS platforms. Terraform, ECS, Kubernetes, CI/CD, observability, security, and cloud cost that stays sane.</p>
+      <p class="lead" style="margin-top:18px">DevOps Engineer with 4+ years of production cloud ops for iGaming and SaaS. AWS and Azure with Terraform, CI/CD, and observability and incident response for 30 production clients and 400+ services.</p>
       <div class="hero-cta">
         <a class="btn primary" href="#contact"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>Get in touch</a>
         <a class="btn" href="cv.pdf" download><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Download CV</a>
@@ -287,9 +287,9 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
     <div class="card cta rv">
       <p class="eyebrow">$ terraform apply</p>
       <h2>Let's ship something reliable.</h2>
-      <p class="lead" style="margin:0 auto 8px">Open to DevOps, platform, and cloud infrastructure work.</p>
+      <p class="lead" style="margin:0 auto 8px">Available now for part-time or B2B work via my own company. Remote worldwide.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="mailto:kiril_milosevski@yahoo.com"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>kiril_milosevski@yahoo.com</a>
+        <a class="btn primary" href="mailto:kiril.milosevski@yahoo.com"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>kiril.milosevski@yahoo.com</a>
         <button class="btn" id="copyEmail" type="button"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy email</button>
         <span data-socials class="socials" style="margin:0"></span>
         <a class="btn" href="tel:+38976659775"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+389 76 659 775</a>
@@ -304,37 +304,37 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
 
 <script>
 const CV = {
-  email: 'kiril_milosevski@yahoo.com',
+  email: 'kiril.milosevski@yahoo.com',
   links: { GitHub: 'https://github.com/KirilMilosevski', LinkedIn: 'https://www.linkedin.com/in/kiril-milosevski-603b25241' },
   roles: ['DevOps Engineer', 'Terraform on AWS', 'CI/CD & GitOps', 'Observability nerd', 'Incident responder'],
   careerStart: new Date('2022-08-01'),
   metrics: [
     { title: 'containers_running', value: 100, suffix: '', prefix: '50–', note: 'ECS · across client envs' },
     { title: 'prod_clients_monitored', value: 30, suffix: '', note: 'Terraform CloudWatch alarms' },
-    { title: 'ci_workflows_owned', value: 40, note: 'GH Actions · GitLab CI' },
+    { title: 'ci_workflows_owned', value: 20, prefix: '~', note: 'GH Actions · GitLab CI' },
     { title: 'years_in_prod', value: 4, suffix: '+', note: 'since Aug 2022' },
   ],
   jobs: [
-    { id: 'btobet', outcome: 'New client environments went from ad-hoc setup to a repeatable, documented build.', org: 'BtoBet', role: 'Software Engineer', when: 'Aug 2022 – Dec 2024', status: 'passed',
+    { id: 'btobet', outcome: 'AWS web and API environments for 50+ new clients, each launched in 1–2 weeks.', org: 'BtoBet', role: 'Software Engineer', when: 'Aug 2022 – Dec 2024', status: 'passed',
       tags: ['AWS', 'SQL', 'Linux', 'Integrations'],
-      log: ['Set up web and API servers for new client environments', 'Configured, deployed and monitored AWS services', 'Wrote SQL for onboarding and database migrations', 'Integrated third-party service providers into the platform', 'Troubleshot app and infra issues across client environments'] },
-    { id: 'aristocrat', outcome: 'One Terraform change now updates uptime checks and alarms for all 30 clients, and routine Redis resets no longer wait on an engineer.', org: 'Aristocrat Interactive', role: 'TechOps Engineer', when: 'Jan 2025 – Mar 2026', status: 'passed',
-      tags: ['Terraform', 'CloudWatch', 'Datadog', 'Zabbix', 'Jira'],
-      log: ['Led Terraform migration of monitoring for 30 prod clients (Pingdom → UptimeRobot)', 'Built Terraform-managed CloudWatch alarms and metrics for 30 prod clients', 'Automated Redis flushes and password resets via Jira + AWS', 'Oversaw EC2, ECS, Lambda, API Gateway, CloudFront, WAF, Athena', 'Maintained Datadog and Zabbix, improved availability'] },
-    { id: 'igaming', outcome: 'Rollback is a revision pin, not a rebuild. Disposable stacks keep non-production cost close to zero when idle.', org: 'B2B2C iGaming Platform', role: 'DevOps Engineer · independent', when: 'Feb 2026 – Present', status: 'running',
-      tags: ['VPC', 'ECS Service Connect', 'Valkey', 'Keycloak', 'OIDC', 'Trivy'],
-      log: ['Designed and built full AWS infra for a modular B2B2C marketplace', 'Terraform persistent + disposable stacks: VPC, IAM, ECR, ECS, EBS, Valkey, SSM', 'Changed-service ECS deploys with digest-pinned revisions for safe rollback', 'Prisma DB migrations as pipeline tasks', 'Security gates with Trivy, Gitleaks, GitHub OIDC, OpenCode multi-agent flows'] },
-    { id: 'unit', outcome: 'One pipeline pattern now carries deploys, Terraform and security scans across client environments, replacing per-client manual steps.', org: 'The Unit', role: 'DevOps Engineer · remote', when: 'Apr 2026 – Present', status: 'running',
-      tags: ['Terraform', 'AWS', 'ECS', 'VPN', 'DNS', 'Grafana', 'Azure'],
-      log: ['Own full AWS infra (Terraform) for multiple clients, dev → prod', 'Operate 50–100 containers in production', 'Own company-wide enterprise VPN architecture and access controls', 'Run high-availability DNS across hybrid cloud', 'Own ~20 CI/CD workflows: ECS deploys, Terraform, PR checks, scanning', 'Grafana / Prometheus / Alloy / CloudWatch stacks, incident response', 'Also Azure via Terraform: Function Apps (Flex Consumption), API Management, Front Door + WAF, Cosmos DB', 'Azure secrets and identity: Key Vault, managed identities, RBAC', 'Azure messaging, data and monitoring: Service Bus, Storage, Managed Redis, Application Insights, Log Analytics', 'Terraform import and drift reconciliation of click-ops Azure resources'] },
+      log: ['Launched AWS web and API environments for 50+ new clients, 1–2 weeks each', 'Configured, deployed and monitored AWS services', 'Wrote migration SQL for client onboarding and databases', 'Integrated third-party service providers into the platform', 'Troubleshot app and infra issues across client environments'] },
+    { id: 'aristocrat', outcome: 'Uptime checks for 100+ sites moved to Terraform with real-time alerts, and routine Redis resets no longer wait on an engineer.', org: 'Aristocrat Interactive', role: 'TechOps Engineer', when: 'Jan 2025 – Mar 2026', status: 'passed',
+      tags: ['Terraform', 'CloudWatch', 'Datadog', 'Kibana', 'UptimeRobot', 'Zabbix', 'Jira'],
+      log: ['Shift-based SRE for 30 prod clients and 400+ services: failed bets, outages, 5xx spikes', 'Led Terraform migration from Pingdom to UptimeRobot for 100+ sites, alert delay 2–3 min → real time', 'Owned incident response at 99.9% uptime: root-cause fixes and postmortems', 'Wrote runbooks, documentation and team standards, onboarded new engineers', 'Built 200+ alarms in Datadog, CloudWatch and Kibana, cut false alerts, moved AWS alarms to Terraform', 'Automated Redis flushes and password resets via Jira + AWS, eliminating 150+ manual tickets'] },
+    { id: 'igaming', outcome: 'Rollback is a digest pin, not a rebuild. Disposable stacks make non-production environments easy to create and tear down.', org: 'B2B2C SaaS iGaming Platform', role: 'DevOps Engineer / Architect · independent B2B', when: 'Feb 2026 – Present', status: 'running',
+      tags: ['Terraform', 'VPC', 'ECS Service Connect', 'Valkey', 'Prisma', 'Keycloak', 'OIDC', 'Trivy'],
+      log: ['Architected the complete AWS platform for a modular B2B2C iGaming marketplace, frontend to backend', 'Terraform persistent + disposable stacks: VPC, least-privilege IAM, ECR, ECS Service Connect, Valkey, SSM', 'Changed-service-only ECS deploys with digest-pinned images for instant rollback', 'Prisma migrations as part of the deploy pipeline', 'Security gates with Trivy, Gitleaks and keyless GitHub OIDC across all pipelines'] },
+    { id: 'unit', outcome: 'Deploy time down from ~10 to ~2 min, and dev environment spend down ~40%.', org: 'The Unit', role: 'DevOps Engineer · full-time, remote', when: 'Apr 2026 – Present', status: 'running',
+      tags: ['Terraform', 'AWS', 'CDK', 'ECS', 'GitHub Actions', 'GitLab CI', 'VPN', 'WireGuard', 'DNS', 'Grafana', 'Azure'],
+      log: ['Own AWS infra for multiple clients, dev → prod, with Terraform and CDK; run 50–100 containers', 'Build and operate Azure workloads: Function Apps, APIM, Front Door, Cosmos DB, Key Vault, Service Bus', 'Standardized Terraform: reusable modules, locked per-env state, pinned providers, plan on PR, apply on merge', 'Own ~20 GitHub Actions and GitLab CI/CD workflows, deploy time ~10 → ~2 min via caching, parallel jobs, path filters, right-sized runners', 'Cut dev environment spend ~40%: Spot, rightsizing, off-hours shutdown, orphaned EBS/EIP/snapshot/load balancer cleanup', 'Run the company-wide WireGuard VPN for 150+ users and high-availability DNS across hybrid cloud'] },
   ],
   skills: {
-    aws: ['EC2', 'ECS', 'ECR', 'Lambda', 'IAM', 'API Gateway', 'CloudFront', 'WAF', 'Athena', 'SSM'],
-    platform: ['Terraform', 'Networking', 'DNS', 'VPN', 'Cloudflare'],
+    aws: ['EC2', 'ECS', 'ECR', 'Lambda', 'IAM', 'API Gateway', 'CloudFront', 'WAF', 'Athena', 'SSM', 'VPC'],
+    platform: ['Terraform', 'AWS CDK', 'Networking', 'DNS', 'VPN', 'Cloudflare'],
     delivery: ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'GitHub Actions', 'GitLab CI/CD'],
-    observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'CloudWatch', 'Datadog', 'Zabbix', 'Alerting', 'Incident response'],
-    data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'Trivy', 'Gitleaks'],
-    ai: ['Cursor', 'Multi-agent workflows', 'LLM tools', 'OpenCode'],
+    observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'CloudWatch', 'Datadog', 'Zabbix', 'Kibana', 'UptimeRobot', 'Pingdom', 'Alerting', 'Incident response'],
+    data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'WireGuard', 'OAuth2 Proxy', 'GitHub OIDC', 'Trivy', 'Gitleaks'],
+    ai: ['Claude (primary)', 'Codex', 'OpenCode', 'Cursor', 'Multi-agent workflows'],
     azure: ['Function Apps', 'API Management', 'Front Door + WAF', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'RBAC', 'Service Bus', 'Storage', 'Managed Redis', 'Application Insights', 'Log Analytics'],
   },
   maps: {
@@ -543,7 +543,7 @@ function countUp(el) {
     whoami: () => 'Kiril Milosevski. DevOps Engineer from Skopje, North Macedonia.\nI design, automate and operate AWS infra that stays up and stays cheap.',
     experience: () => CV.jobs.slice().reverse().map(j => `<span class="p">${j.when.padEnd(22)}</span> ${j.role} @ ${j.org}`).join('\n'),
     skills: () => Object.entries(CV.skills).map(([k, v]) => `<span class="h">${k.padEnd(14)}</span>${v.join(', ')}`).join('\n'),
-    contact: () => [`email   <a href="mailto:${CV.email}">${CV.email}</a>`, 'phone   +389 76 659 775', 'where   Skopje, North Macedonia',
+    contact: () => [`email   <a href="mailto:${CV.email}">${CV.email}</a>`, 'phone   +389 76 659 775', 'where   Skopje, North Macedonia (remote worldwide)',
       ...liveLinks.map(([n, u]) => `${n.toLowerCase().padEnd(8)}<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`)].join('\n'),
     azure: () => CV.skills.azure.map(s => `<span class="p">+</span> ${s}`).join('\n'),
     cv: () => { const a = document.createElement('a'); a.href = 'cv.pdf'; a.download = ''; a.click(); return '<span class="p">downloading cv.pdf…</span>'; },
