@@ -73,28 +73,10 @@ h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webki
 .panel .t{font:500 12px var(--mono);color:var(--fg-muted);display:flex;justify-content:space-between}
 .panel .n{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:4px 0}
 .panel .n small{font-size:16px;color:var(--fg-muted);font-weight:500}
-/* topology */
-.topo{margin-top:40px;padding:20px;display:grid;grid-template-columns:1fr 300px;gap:20px}
-@media(max-width:900px){.topo{grid-template-columns:1fr}}
-#topo svg{width:100%;height:auto}
-.node rect{fill:var(--muted);stroke:var(--border);stroke-width:1.5;transition:stroke .2s,fill .2s}
-.node text{fill:var(--fg);font:600 13px var(--sans);pointer-events:none}
-.node text.sub{fill:var(--fg-muted);font:400 10.5px var(--mono)}
-.node{cursor:pointer;outline:none}
-.node:hover rect,.node:focus rect,.node.on rect{stroke:var(--accent);fill:#12301f}
-.edge{stroke:var(--border);stroke-width:1.5;fill:none}
-.edge.on{stroke:var(--accent)}
-.pkt{fill:var(--accent);filter:drop-shadow(0 0 4px var(--accent))}
-.inspect{padding:18px;font-size:14px}
-.inspect h3{font-size:18px;margin:6px 0 8px}
-.inspect p{color:var(--fg-muted)}
+/* chips */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{font:500 12px var(--mono);padding:4px 9px;border-radius:6px;background:var(--muted);border:1px solid var(--border);white-space:nowrap}
 
-.mtab.trace{color:var(--accent);border-color:var(--accent)}
-.zone{fill:rgba(56,189,248,.04);stroke:#38BDF8;stroke-opacity:.35;stroke-dasharray:5 5;stroke-width:1.2}
-.zl{fill:#38BDF8;font:600 11px var(--mono);opacity:.85}
-.more{align-self:center;font:500 13px var(--mono);color:var(--fg-muted);margin-left:6px}
 /* pipeline */
 .pipe{display:flex;align-items:center;gap:0;margin:40px 0 20px;overflow-x:auto;padding:8px 2px 14px}
 .stage{flex:1;min-width:190px;text-align:left;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--fg);font:inherit;transition:border-color .2s,transform .2s}
@@ -120,8 +102,8 @@ h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webki
 
 /* plan */
 .plan-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 14px}
-.mtab,.tab{font:500 13px var(--mono);padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--fg-muted);cursor:pointer;min-height:40px}
-.mtab.on,.tab.on{color:#0F172A;background:var(--accent);border-color:var(--accent)}
+.tab{font:500 13px var(--mono);padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--fg-muted);cursor:pointer;min-height:40px}
+.tab.on{color:#0F172A;background:var(--accent);border-color:var(--accent)}
 .plan{padding:22px;font:14px/1.9 var(--mono);overflow-x:auto}
 .plan .add{color:var(--accent)}.plan .c{color:var(--fg-muted)}.plan .y{color:var(--warn)}
 .plan .res{display:block;cursor:default;border-radius:4px;padding:0 6px;margin:0 -6px}
@@ -139,6 +121,43 @@ h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webki
 .hints{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .hints button{font:12px var(--mono);cursor:pointer;color:var(--fg-muted);min-height:34px}
 .hints button:hover{color:var(--fg);border-color:var(--accent)}
+
+/* release film */
+#release .film{padding:16px;display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:36px}
+#release .rl-term{background:#01040d;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+#release .tbar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--border);font:12px var(--mono);color:var(--fg-muted)}
+#release .tbar i{width:10px;height:10px;border-radius:50%;background:#ef4444}#release .tbar i+i{background:#f59e0b}#release .tbar i+i+i{background:#22c55e}
+#release .tbar span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#release .tbar button{margin-left:auto;white-space:nowrap;flex:none;font:12px var(--mono);background:none;border:1px solid var(--border);color:var(--fg-muted);border-radius:6px;padding:2px 8px;cursor:pointer}
+#release .rl-log{padding:12px 14px;font:12.5px/1.8 var(--mono);color:var(--fg-muted);height:248px;overflow:hidden;white-space:pre-wrap}
+#release .rl-log div{animation:rl-in .25s ease-out}
+#release .rl-log .a,#release .rl-log .g{color:var(--accent)}#release .rl-log .y{color:var(--warn)}#release .rl-log .r{color:var(--danger)}#release .rl-log .w{color:var(--fg)}
+#release .rl-log .cur::after{content:'▍';color:var(--accent);animation:rl-blink 1s steps(1) infinite}
+@keyframes rl-in{from{opacity:0;transform:translateY(4px)}}
+@keyframes rl-blink{50%{opacity:0}}
+#release .dash{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+#release .pill{grid-column:1/-1;font:700 13px var(--mono);letter-spacing:.06em;padding:10px 12px;border-radius:10px;border:1px solid var(--border);color:var(--fg-muted);display:flex;align-items:center;gap:8px;transition:all .3s}
+#release .pill::before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor}
+#release .pill.g{color:var(--accent);border-color:var(--accent);background:rgba(34,197,94,.07)}
+#release .pill.y{color:var(--warn);border-color:var(--warn);background:rgba(245,158,11,.07)}
+#release .pill.r{color:var(--danger);border-color:var(--danger);background:rgba(239,68,68,.09);animation:rl-pulse 1s infinite}
+@keyframes rl-pulse{50%{box-shadow:0 0 0 4px rgba(239,68,68,.15)}}
+#release .tile{border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0}
+#release .tile small{display:block;font:11px var(--mono);color:var(--fg-muted);text-transform:uppercase;letter-spacing:.05em}
+#release .tile b{display:block;font:700 28px var(--mono);letter-spacing:-.02em;margin:2px 0 6px;transition:color .3s}
+#release .meter{height:6px;background:var(--muted);border-radius:99px;overflow:hidden}
+#release .meter i{display:block;height:100%;width:100%;background:var(--warn);transition:width .6s ease,background .6s}
+#release .tile.wide{grid-column:1/-1}
+#release .spark{display:flex;align-items:flex-end;gap:2px;height:46px;margin-top:6px}
+#release .spark i{flex:1;border-radius:2px 2px 0 0;background:var(--accent)}
+#release .chapters{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+#release .chapters button{position:relative;overflow:hidden;text-align:left;font:12px var(--mono);color:var(--fg-muted);background:var(--muted);border:1px solid var(--border);border-radius:10px;padding:9px 10px 11px;cursor:pointer}
+#release .chapters button b{display:block;color:var(--fg);font-size:12px}
+#release .chapters button.on{border-color:var(--accent)}
+#release .chapters button.done b{color:var(--accent)}
+#release .chapters .fill{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent)}
+#release .foot{font-size:12px;color:var(--fg-muted);margin-top:10px}
+@media(max-width:760px){#release .film{grid-template-columns:1fr}#release .rl-log{height:196px;font-size:11.5px}#release .chapters{display:flex;flex-wrap:wrap;gap:6px}#release .chapters button{flex:1 1 auto;padding:7px 10px 9px;font-size:0}#release .chapters button b{font-size:11.5px}}
 
 /* certs + contact */
 .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
@@ -160,7 +179,6 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
-  .pkt{display:none}
 }
 </style>
 </head>
@@ -172,7 +190,7 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
     <a href="#hero" class="logo" style="text-decoration:none">kiril<b>@</b>prod:~$</a>
     <ul>
       <li><a href="#metrics">Metrics</a></li>
-      <li><a href="#topology">Infra</a></li>
+      <li><a href="#release">Infra</a></li>
       <li><a href="#pipeline">Career</a></li>
       <li><a href="#plan">Skills</a></li>
       <li><a href="#shell">Shell</a></li>
@@ -224,16 +242,25 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
   </div>
 </section>
 
-<section id="topology">
+<section id="release">
   <div class="wrap">
-    <p class="eyebrow">architecture.tf</p>
-    <h2 class="rv">Three platforms. Plenty more.</h2>
-    <p class="lead rv">A sample of the platforms I have built and run, not the full list. Switch between them, trace a request, or click any component.</p>
-    <div class="plan-tabs rv"><span id="mapTabs" style="display:contents"></span><button class="mtab trace" id="trace" type="button">▶ Trace a request</button><span class="more">+ many more in production</span></div>
-    <div class="card topo rv" style="margin-top:0">
-      <div id="topo"></div>
-      <div class="inspect card" id="inspect" aria-live="polite"></div>
+    <p class="eyebrow">$ ./release.sh --end-to-end</p>
+    <h2 class="rv">One release, start to finish.</h2>
+    <p class="lead rv">Provision it, make the pipeline fast, ship it, break it, fix it, then make it cheaper. The results are from my CV; the walkthrough is illustrative and shows no client topology.</p>
+    <div class="card film rv" id="rl-film">
+      <div class="rl-term">
+        <div class="tbar"><i></i><i></i><i></i><span id="rl-title">kiril@prod · release.sh</span><button id="rl-pp" type="button" aria-label="Pause">❚❚ pause</button></div>
+        <div class="rl-log" id="rl-log" aria-live="polite"></div>
+      </div>
+      <div class="dash">
+        <div class="pill" id="rl-pill">IDLE</div>
+        <div class="tile"><small>deploy time</small><b id="rl-vDeploy">10:00</b><div class="meter"><i id="rl-mDeploy"></i></div></div>
+        <div class="tile"><small>dev spend</small><b id="rl-vSpend">100%</b><div class="meter"><i id="rl-mSpend"></i></div></div>
+        <div class="tile wide"><small>api · 5xx rate · uptime 99.9%</small><div class="spark" id="rl-spark"></div></div>
+      </div>
+      <div class="chapters" id="rl-chapters"></div>
     </div>
+    <p class="foot rv">Click a chapter to jump to it.</p>
   </div>
 </section>
 
@@ -322,7 +349,7 @@ const CV = {
       tags: ['Terraform', 'CloudWatch', 'Datadog', 'Kibana', 'UptimeRobot', 'Zabbix', 'Jira'],
       log: ['Shift-based SRE for 30 prod clients and 400+ services: failed bets, outages, 5xx spikes', 'Led Terraform migration from Pingdom to UptimeRobot for 100+ sites, alert delay 2–3 min → real time', 'Owned incident response at 99.9% uptime: root-cause fixes and postmortems', 'Wrote runbooks, documentation and team standards, onboarded new engineers', 'Built 200+ alarms in Datadog, CloudWatch and Kibana, cut false alerts, moved AWS alarms to Terraform', 'Automated Redis flushes and password resets via Jira + AWS, eliminating 150+ manual tickets'] },
     { id: 'igaming', outcome: 'Rollback is a digest pin, not a rebuild. Disposable stacks make non-production environments easy to create and tear down.', org: 'B2B2C SaaS iGaming Platform', role: 'DevOps Engineer / Architect · independent B2B', when: 'Feb 2026 – Present', status: 'running',
-      tags: ['Terraform', 'VPC', 'ECS Service Connect', 'Valkey', 'Prisma', 'Keycloak', 'OIDC', 'Trivy'],
+      tags: ['Terraform', 'VPC', 'ECS Service Connect', 'Valkey', 'Prisma', 'OIDC', 'Trivy'],
       log: ['Architected the complete AWS platform for a modular B2B2C iGaming marketplace, frontend to backend', 'Terraform persistent + disposable stacks: VPC, least-privilege IAM, ECR, ECS Service Connect, Valkey, SSM', 'Changed-service-only ECS deploys with digest-pinned images for instant rollback', 'Prisma migrations as part of the deploy pipeline', 'Security gates with Trivy, Gitleaks and keyless GitHub OIDC across all pipelines'] },
     { id: 'unit', outcome: 'Deploy time down from ~10 to ~2 min, and dev environment spend down ~40%.', org: 'The Unit', role: 'DevOps Engineer · full-time, remote', when: 'Apr 2026 – Present', status: 'running',
       tags: ['Terraform', 'AWS', 'CDK', 'ECS', 'GitHub Actions', 'GitLab CI', 'VPN', 'WireGuard', 'DNS', 'Grafana', 'Azure'],
@@ -335,73 +362,7 @@ const CV = {
     observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'CloudWatch', 'Datadog', 'Zabbix', 'Kibana', 'UptimeRobot', 'Pingdom', 'Alerting', 'Incident response'],
     data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'WireGuard', 'OAuth2 Proxy', 'GitHub OIDC', 'Trivy', 'Gitleaks'],
     ai: ['Claude (primary)', 'Codex', 'OpenCode', 'Cursor', 'Multi-agent workflows'],
-    azure: ['Function Apps', 'API Management', 'Front Door + WAF', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'RBAC', 'Service Bus', 'Storage', 'Managed Redis', 'Application Insights', 'Log Analytics'],
-  },
-  maps: {
-    aws: {
-      label: 'AWS · iGaming platform', w: 920, h: 450,
-      zones: [{ x: 330, y: 12, w: 580, h: 330, label: 'AWS VPC · private subnets' }],
-      nodes: [
-        { id: 'user', x: 20, y: 150, t: 'Users', s: 'consumer · operator', d: 'Consumers and operators reach the platform through Cloudflare. No origin is exposed to the internet.', tags: ['Cloudflare'] },
-        { id: 'cf', x: 170, y: 150, t: 'Cloudflare', s: 'tunnel · DNS', d: 'Cloudflare Tunnel and DNS. Traffic reaches the VPC without opening inbound ports.', tags: ['Cloudflare Tunnel', 'DNS'] },
-        { id: 'edge', x: 350, y: 150, t: 'Traefik', s: 'reverse proxy', d: 'Traefik routes each hostname to the right service and enforces auth before anything reaches an app.', tags: ['Traefik'] },
-        { id: 'auth', x: 350, y: 50, t: 'Keycloak', s: 'OAuth2 Proxy', d: 'Keycloak and OAuth2 Proxy handle identity. Services trust the proxy, not the open internet.', tags: ['Keycloak', 'OAuth2 Proxy'] },
-        { id: 'api', x: 540, y: 40, t: 'API', s: 'ECS · Service Connect', d: 'Containerized API on ECS. Service Connect handles service-to-service traffic. Deployed only when changed, with digest-pinned revisions.', tags: ['ECS', 'Service Connect'] },
-        { id: 'web', x: 540, y: 115, t: 'Consumer + Operator', s: 'ECS services', d: 'Front-facing services, each with its own task role and least-privilege IAM.', tags: ['ECS', 'IAM'] },
-        { id: 'ingest', x: 540, y: 190, t: 'Ingest + Reporting', s: 'ECS services', d: 'Data ingestion and reporting run as separate services so they scale and fail independently.', tags: ['ECS', 'CloudWatch Logs'] },
-        { id: 'mig', x: 540, y: 265, t: 'Prisma migrate', s: 'one-off ECS task', d: 'Database migrations run as a pipeline task before the rollout, so schema and code ship together.', tags: ['Prisma', 'ECS task'] },
-        { id: 'pg', x: 740, y: 60, t: 'PostgreSQL', s: 'encrypted EBS', d: 'PostgreSQL on encrypted EBS in private subnets. Part of the persistent stack that survives teardown of the disposable one.', tags: ['PostgreSQL', 'Encrypted EBS'] },
-        { id: 'cache', x: 740, y: 160, t: 'Valkey', s: 'cache · sessions', d: 'Valkey for caching and sessions, private, reachable only from the services.', tags: ['Valkey', 'VPC'] },
-        { id: 'ci', x: 20, y: 380, t: 'GitHub Actions', s: 'OIDC · Trivy · Gitleaks', d: 'GitHub OIDC into AWS with no static keys. Trivy and Gitleaks gate every build. Only changed services deploy.', tags: ['GitHub Actions', 'OIDC', 'Trivy', 'Gitleaks'] },
-        { id: 'ecr', x: 190, y: 380, t: 'ECR', s: 'digest-pinned images', d: 'Images are referenced by digest, so a task definition revision always points at exactly what was tested.', tags: ['ECR'] },
-        { id: 'ssm', x: 360, y: 380, t: 'SSM', s: 'parameters · secrets', d: 'Configuration and secrets come from SSM at task start, not from the image.', tags: ['SSM', 'IAM'] },
-        { id: 'obs', x: 540, y: 380, t: 'CloudWatch Logs', s: 'alarms · dashboards', d: 'Logs and alarms for every service, with dashboards that show the state of a release at a glance.', tags: ['CloudWatch', 'Grafana'] },
-      ],
-      edges: [['user','cf'],['cf','edge'],['edge','auth'],['edge','api'],['edge','web'],['edge','ingest'],['api','pg'],['api','cache'],['web','cache'],['ingest','pg'],['mig','pg'],['ci','ecr'],['ecr','api'],['ecr','mig'],['ssm','api'],['api','obs'],['ingest','obs']],
-      trace: ['user','cf','edge','auth','api','cache','pg'],
-    },
-    betting: {
-      label: 'AWS · Sports betting platform', w: 920, h: 450,
-      zones: [{ x: 330, y: 12, w: 580, h: 330, label: 'AWS VPC · 3 AZs · public + private subnets' }],
-      nodes: [
-        { id: 'user', x: 20, y: 150, t: 'Players', s: 'web · back office', d: 'Players and staff reach the platform over HTTPS through CloudFront.', tags: ['HTTPS'] },
-        { id: 'cf', x: 170, y: 150, t: 'CloudFront', s: 'ALB origin', d: 'CloudFront in front of the ALB with caching disabled for the API. A smoke test hits it after every proxy deploy.', tags: ['CloudFront'] },
-        { id: 'alb', x: 350, y: 150, t: 'ALB', s: 'path routing', d: 'The ALB accepts traffic only from CloudFront and routes by path to the right ECS service.', tags: ['ALB', 'Security groups'] },
-        { id: 'proxy', x: 540, y: 40, t: 'API proxy', s: 'nginx · JWT headers', d: 'nginx/OpenResty rewrites /api paths to backend services and injects JWT-derived headers.', tags: ['nginx', 'ECS'] },
-        { id: 'front', x: 540, y: 115, t: 'Frontend', s: 'Next.js on ECS', d: 'Next.js standalone frontend served from ECS behind the ALB.', tags: ['Next.js', 'ECS'] },
-        { id: 'core', x: 540, y: 190, t: 'Core services', s: 'market · price · betting +', d: 'Around 15 backend services on ECS with Service Connect. The betting service is pinned to a single task with no overlap during deploys. Capacity is EC2-backed, spot-only in dev.', tags: ['ECS', 'Service Connect', 'Spot', 'Autoscaling'] },
-        { id: 'staff', x: 540, y: 265, t: 'Staff auth · audit', s: 'private only', d: 'Staff authentication, audit and back office run with no ALB and no CloudFront. They are reachable only over Service Connect.', tags: ['Service Connect', 'Private'] },
-        { id: 'rds', x: 740, y: 40, t: 'RDS MySQL', s: 'private · PITR', d: 'Private-only RDS MySQL with encrypted storage, deletion protection and point-in-time recovery.', tags: ['RDS', 'Encrypted', 'PITR'] },
-        { id: 'redis', x: 740, y: 130, t: 'ElastiCache', s: 'Redis · TLS + AUTH', d: 'Redis with transit encryption and an AUTH token.', tags: ['ElastiCache', 'TLS'] },
-        { id: 'kafka', x: 740, y: 220, t: 'MSK Kafka', s: 'private brokers', d: 'MSK with private-only brokers across two AZs, TLS and SCRAM auth, and topics for events and compact odds.', tags: ['MSK', 'SCRAM', 'TLS'] },
-        { id: 'ci', x: 20, y: 380, t: 'GitHub Actions', s: 'OIDC deploy role', d: 'Deploys assume an AWS role through GitHub OIDC. Build, push to ECR, force a new ECS deployment, wait for stability.', tags: ['GitHub Actions', 'OIDC'] },
-        { id: 'ecr', x: 190, y: 380, t: 'ECR', s: 'repo per service', d: 'One ECR repository per service, with lifecycle policies.', tags: ['ECR'] },
-        { id: 'sec', x: 360, y: 380, t: 'Secrets Manager', s: 'DB · Kafka · APIs', d: 'Database, Kafka SCRAM and third-party API credentials live in Secrets Manager.', tags: ['Secrets Manager'] },
-        { id: 'obs', x: 540, y: 380, t: 'CloudWatch', s: 'alarms · Slack', d: 'Alarms across ALB, ECS, RDS, Redis and MSK, a shared dashboard, and EventBridge rules for failed deployments. Alerts reach Slack through SNS and Lambda.', tags: ['CloudWatch', 'SNS', 'Lambda', 'EventBridge'] },
-        { id: 'budget', x: 740, y: 380, t: 'AWS Budget', s: 'Slack alerts', d: 'A monthly budget with Slack alerts on actual and forecasted spend.', tags: ['Budgets', 'Cost control'] },
-      ],
-      edges: [['user','cf'],['cf','alb'],['alb','proxy'],['alb','front'],['alb','core'],['proxy','core'],['proxy','staff'],['core','rds'],['core','redis'],['core','kafka'],['staff','rds'],['ci','ecr'],['ecr','core'],['sec','core'],['core','obs'],['obs','budget']],
-      trace: ['user','cf','alb','proxy','core','rds'],
-    },
-    azure: {
-      label: 'Azure · API platform (Terraform)', w: 900, h: 400,
-      zones: [{ x: 170, y: 12, w: 720, h: 376, label: 'Azure subscription · resource group' }],
-      nodes: [
-        { id: 'app', x: 15, y: 150, t: 'Mobile app', s: 'HTTPS', d: 'Mobile clients call one public hostname. Everything behind it is private to the platform.', tags: [] },
-        { id: 'fd', x: 190, y: 150, t: 'Front Door', s: 'WAF · custom domain', d: 'Front Door with a WAF policy and custom domain in front of the API. Managed in Terraform.', tags: ['Front Door', 'WAF', 'Custom domain'] },
-        { id: 'apim', x: 360, y: 150, t: 'API Management', s: 'policies · backends', d: 'API Management owns routes, policy fragments, named values and the backend definition. Managed Redis backs its cache.', tags: ['API Management', 'Policy fragments'] },
-        { id: 'redis', x: 360, y: 260, t: 'Managed Redis', s: 'APIM cache', d: 'Managed Redis used as the API Management external cache.', tags: ['Managed Redis'] },
-        { id: 'fn', x: 540, y: 150, t: 'Function App', s: 'Flex Consumption', d: 'The API runs on a Function App on Flex Consumption. Identity-based access to data and secrets, no connection strings in config.', tags: ['Function App', 'Flex Consumption'] },
-        { id: 'cosmos', x: 720, y: 60, t: 'Cosmos DB', s: 'SQL API', d: 'Cosmos DB SQL API with database and containers in Terraform. Data-plane access through SQL role assignments.', tags: ['Cosmos DB', 'SQL role assignment'] },
-        { id: 'sb', x: 720, y: 150, t: 'Service Bus', s: 'queue · topic', d: 'Service Bus namespace with a queue and topic for asynchronous work that triggers the Function App.', tags: ['Service Bus'] },
-        { id: 'st', x: 720, y: 240, t: 'Storage', s: 'queue · container', d: 'Storage account with a queue and a blob container used by the app.', tags: ['Storage'] },
-        { id: 'id', x: 540, y: 40, t: 'Managed Identity', s: 'RBAC', d: 'User-assigned identities and role assignments grant least-privilege access between services.', tags: ['Managed Identity', 'RBAC'] },
-        { id: 'kv', x: 540, y: 260, t: 'Key Vault', s: 'secrets', d: 'Key Vault holds secrets. The app reads them through its identity.', tags: ['Key Vault'] },
-        { id: 'ai', x: 360, y: 40, t: 'App Insights', s: 'Log Analytics', d: 'Application Insights on a Log Analytics workspace, with Monitor action groups for alerts.', tags: ['Application Insights', 'Log Analytics', 'Monitor'] },
-      ],
-      edges: [['app','fd'],['fd','apim'],['apim','redis'],['apim','fn'],['fn','cosmos'],['sb','fn'],['fn','st'],['id','fn'],['id','kv'],['kv','fn'],['fn','ai'],['apim','ai']],
-      trace: ['app','fd','apim','fn','cosmos'],
-    },
+    azure: ['Function Apps', 'API Management', 'Front Door', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'Service Bus'],
   },
   certs: [
     { k: 'BSc', t: 'Software Engineering', o: 'University American College Skopje · 2019–2022' },
@@ -446,50 +407,89 @@ function countUp(el) {
   reduced ? (el.innerHTML = `${p}${v}<small>${s}</small>`) : requestAnimationFrame(f);
 }
 
-(function topology() {
-  const W = 150, H = 54; let key = 'aws', timer = 0;
-  const tabs = $('#mapTabs'), traceBtn = $('#trace');
-  tabs.innerHTML = Object.entries(CV.maps).map(([k, m]) => `<button class="mtab" type="button" data-k="${k}">${m.label}</button>`).join('');
-  const stop = () => { clearInterval(timer); timer = 0; };
-  const select = (id, upto) => {
-    const m = CV.maps[key], n = m.nodes.find(x => x.id === id);
-    document.querySelectorAll('.node').forEach(g => g.classList.toggle('on', g.dataset.id === id));
-    document.querySelectorAll('.edge').forEach(p => p.classList.toggle('on', upto ? upto.has(p.id) : p.dataset.a === id || p.dataset.b === id));
-    $('#inspect').innerHTML = `<p class="eyebrow">resource "${id}"</p><h3>${n.t}</h3><p>${n.d}</p><div class="chips">${n.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>`;
-  };
-  const draw = () => {
-    stop();
-    const m = CV.maps[key], by = Object.fromEntries(m.nodes.map(n => [n.id, n]));
-    const c = n => [n.x + W / 2, n.y + H / 2];
-    const path = ([a, b]) => { const [x1, y1] = c(by[a]), [x2, y2] = c(by[b]), mx = (x1 + x2) / 2; return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`; };
-    $('#topo').innerHTML = `<svg viewBox="0 0 ${m.w} ${m.h}" role="group" aria-label="${m.label}">
-      ${m.zones.map(z => `<rect class="zone" x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="16"/><text class="zl" x="${z.x + 16}" y="${z.y + 22}">${z.label}</text>`).join('')}
-      ${m.edges.map((e, i) => `<path class="edge" id="e${i}" data-a="${e[0]}" data-b="${e[1]}" d="${path(e)}"/>`).join('')}
-      ${m.edges.map((e, i) => `<circle class="pkt" r="3"><animateMotion dur="${2 + (i % 4) * .6}s" repeatCount="indefinite" begin="${i * .3}s"><mpath href="#e${i}"/></animateMotion></circle>`).join('')}
-      ${m.nodes.map(n => `<g class="node" tabindex="0" role="button" aria-label="${n.t}" data-id="${n.id}" transform="translate(${n.x},${n.y})">
-        <rect width="${W}" height="${H}" rx="10"/><text x="14" y="23">${n.t}</text><text class="sub" x="14" y="40">${n.s}</text></g>`).join('')}
-    </svg>`;
-    document.querySelectorAll('.mtab').forEach(t => t.classList.toggle('on', t.dataset.k === key));
-    document.querySelectorAll('.node').forEach(g => {
-      g.addEventListener('click', () => { stop(); select(g.dataset.id); });
-      g.addEventListener('mouseenter', () => { if (!timer) select(g.dataset.id); });
-      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stop(); select(g.dataset.id); } });
-    });
-    select(m.trace[0]);
-  };
-  const trace = () => {
-    stop();
-    const m = CV.maps[key], seen = new Set(); let i = 0;
-    const step = () => {
-      if (i >= m.trace.length) return stop();
-      if (i) { const a = m.trace[i - 1], b = m.trace[i]; const idx = m.edges.findIndex(e => (e[0] === a && e[1] === b) || (e[0] === b && e[1] === a)); if (idx > -1) seen.add('e' + idx); }
-      select(m.trace[i++], seen);
-    };
-    step(); timer = setInterval(step, 1300);
-  };
-  tabs.addEventListener('click', e => { const b = e.target.closest('.mtab'); if (b) { key = b.dataset.k; draw(); } });
-  traceBtn.addEventListener('click', trace);
-  draw();
+(function release() {
+  const STEP = reduced ? 0 : 850, HOLD = reduced ? 0 : 1800;
+
+  /* dashboard */
+  let rate = 4;
+  const spark = $('#rl-spark'); spark.innerHTML = '<i style="height:8%"></i>'.repeat(48);
+  function tick() { const b = document.createElement('i'); b.style.height = Math.min(100, rate * (.75 + Math.random() * .5)) + '%'; if (rate > 20) b.style.background = 'var(--danger)'; spark.appendChild(b); spark.firstChild.remove(); }
+  if (!reduced) setInterval(() => { if (gen && !paused) tick(); }, 220);
+  function pill(t, c) { const p = $('#rl-pill'); p.textContent = t; p.className = 'pill ' + (c || ''); }
+  function deploy(min) { const m = Math.floor(min), s = Math.round((min - m) * 60); $('#rl-vDeploy').textContent = m + ':' + String(s).padStart(2, '0'); $('#rl-mDeploy').style.width = min * 10 + '%'; $('#rl-mDeploy').style.background = min <= 2 ? 'var(--accent)' : 'var(--warn)'; $('#rl-vDeploy').style.color = min <= 2 ? 'var(--accent)' : ''; }
+  function spend(p) { $('#rl-vSpend').textContent = p + '%'; $('#rl-mSpend').style.width = p + '%'; $('#rl-mSpend').style.background = p <= 60 ? 'var(--accent)' : 'var(--warn)'; $('#rl-vSpend').style.color = p <= 60 ? 'var(--accent)' : ''; }
+  function reset() { rate = 4; pill('IDLE'); deploy(10); spend(100); }
+
+  /* story: [text, colour, effect] */
+  const CH = [
+    { t: 'Provision', s: 'terraform', ev: [
+      ['$ terraform -chdir=envs/prod plan', 'w'],
+      ['+ module.network.aws_vpc.main      # private subnets', 'a'],
+      ['+ module.iam.aws_iam_role.task     # least privilege', 'a'],
+      ['+ module.ecs.aws_ecs_service.api   # Service Connect', 'a'],
+      ['+ module.cache.valkey              # private', 'a'],
+      ['Plan: 4 to add, 0 to change, 0 to destroy.', ''],
+      ['✓ apply complete · state locked per environment', 'g', () => pill('PROVISIONED', 'g')]] },
+    { t: 'Speed up', s: 'CI/CD', ev: [
+      ['$ ci optimize --deploy-time', 'w', () => pill('OPTIMIZING CI', 'y')],
+      ['✓ dependency + layer caching', 'g', () => deploy(7.5)],
+      ['✓ parallel jobs', 'g', () => deploy(5)],
+      ['✓ path filters: build only what changed', 'g', () => deploy(3)],
+      ['✓ right-sized runners', 'g', () => deploy(2)],
+      ['deploy time ~10 min → ~2 min', 'w', () => pill('CI FAST', 'g')]] },
+    { t: 'Ship', s: 'deploy', ev: [
+      ['$ git push origin main', 'w', () => pill('DEPLOYING', 'y')],
+      ['→ trivy · gitleaks        0 HIGH · 0 leaks', 'y'],
+      ['→ AWS via GitHub OIDC     no static keys', 'y'],
+      ['→ build api@sha256:9f2c…  digest pinned', 'y'],
+      ['→ deploy changed services only', 'y'],
+      ['✓ live in 2:00', 'g', () => pill('HEALTHY', 'g')]] },
+    { t: 'Break & fix', s: 'on call', ev: [
+      ['✗ ALARM  api 5xx spike after release', 'r', () => { rate = 85; pill('TRIGGERED', 'r'); }],
+      ['📟 paged → acknowledged', 'y', () => pill('ACKNOWLEDGED', 'y')],
+      ['→ runbook: pin api@sha256:41ab… (last good)', 'y'],
+      ['✓ healthy again · rolled back, no rebuild', 'g', () => { rate = 4; pill('RESOLVED', 'g'); }],
+      ['postmortem.md → root cause, fix, new alarm', '']] },
+    { t: 'Cut cost', s: 'FinOps', ev: [
+      ['$ cost optimize --env dev', 'w', () => pill('OPTIMIZING COST', 'y')],
+      ['✓ Spot capacity', 'g', () => spend(88)],
+      ['✓ rightsizing', 'g', () => spend(80)],
+      ['✓ off-hours shutdown', 'g', () => spend(67)],
+      ['✓ orphan cleanup: EBS · EIP · snapshots', 'g', () => spend(60)],
+      ['dev spend down ~40%', 'w', () => pill('ALL SYSTEMS OPERATIONAL', 'g')]] },
+  ];
+
+  /* chapter buttons */
+  const chap = $('#rl-chapters');
+  chap.innerHTML = CH.map((c, i) => `<button type="button" data-i="${i}"><b>${i + 1} ${c.t}</b>${c.s}<span class="fill"></span></button>`).join('');
+  const btns = [...chap.children], fills = btns.map(b => b.querySelector('.fill'));
+  let io;
+  chap.onclick = e => { const b = e.target.closest('button'); if (b) { io && io.disconnect(); paused = false; ppLabel(); play(+b.dataset.i); } };
+
+  /* player */
+  const log = $('#rl-log');
+  let gen = 0, paused = false, prog = { c: 0, el: 0, dur: 1 };
+  function line([t, c]) { log.querySelectorAll('.cur').forEach(x => x.classList.remove('cur')); const d = document.createElement('div'); d.textContent = t; d.className = (c || '') + ' cur'; log.appendChild(d); }
+  function wait(ms, g) { return new Promise(r => { if (!ms) return r(); let last = performance.now(); const t = setInterval(() => { const now = performance.now(), dt = now - last; last = now; if (g !== gen) { clearInterval(t); return r(); } if (paused) return; prog.el += dt; fills[prog.c].style.width = Math.min(100, prog.el / prog.dur * 100) + '%'; if ((ms -= dt) <= 0) { clearInterval(t); r(); } }, 50); }); }
+  function mark(c) { btns.forEach((b, i) => { b.classList.toggle('on', i === c); b.classList.toggle('done', i < c); i === c ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'); fills[i].style.width = i < c ? '100%' : '0'; }); prog = { c, el: 0, dur: CH[c].ev.length * STEP + HOLD || 1 }; }
+  async function play(from) {
+    const g = ++gen; reset(); CH.slice(0, from).forEach(c => c.ev.forEach(e => e[2] && e[2]()));
+    for (let c = from; c < CH.length; c++) {
+      mark(c); log.innerHTML = ''; $('#rl-title').textContent = `release.sh · ${c + 1}/${CH.length} ${CH[c].t.toLowerCase()}`;
+      for (const e of CH[c].ev) { await wait(STEP, g); if (g !== gen) return; line(e); e[2] && e[2](); }
+      await wait(HOLD, g); if (g !== gen) return;
+      if (reduced) return;
+    }
+    btns.forEach(b => { b.classList.remove('on'); b.classList.add('done'); });
+    log.setAttribute('aria-live', 'off');
+    await wait(1500, g); if (g === gen) play(0);
+  }
+  const pp = $('#rl-pp');
+  function ppLabel() { pp.textContent = paused ? '▶ play' : '❚❚ pause'; pp.setAttribute('aria-label', paused ? 'Play' : 'Pause'); }
+  pp.onclick = () => { paused = !paused; ppLabel(); };
+  if (reduced) { pp.hidden = true; play(4); }
+  else (io = new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); play(0); } }, { threshold: .25 })).observe($('#rl-film'));
+  for (let i = 0; i < 48; i++) tick();
 })();
 
 (function pipeline() {
