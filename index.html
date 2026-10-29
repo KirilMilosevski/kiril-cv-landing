@@ -246,7 +246,7 @@ footer{padding:36px 0;color:var(--fg-muted);font:13px var(--mono);text-align:cen
   <div class="wrap">
     <p class="eyebrow">$ ./release.sh --end-to-end</p>
     <h2 class="rv">One release, start to finish.</h2>
-    <p class="lead rv">Provision it, make the pipeline fast, ship it, break it, fix it, then make it cheaper. Numbers come from my work; no client systems are shown.</p>
+    <p class="lead rv">Provision it, make the pipeline fast, ship it, break it, fix it, then make it cheaper. The results are from my CV; the walkthrough is illustrative and shows no client topology.</p>
     <div class="card film rv" id="rl-film">
       <div class="rl-term">
         <div class="tbar"><i></i><i></i><i></i><span id="rl-title">kiril@prod · release.sh</span><button id="rl-pp" type="button" aria-label="Pause">❚❚ pause</button></div>
@@ -349,7 +349,7 @@ const CV = {
       tags: ['Terraform', 'CloudWatch', 'Datadog', 'Kibana', 'UptimeRobot', 'Zabbix', 'Jira'],
       log: ['Shift-based SRE for 30 prod clients and 400+ services: failed bets, outages, 5xx spikes', 'Led Terraform migration from Pingdom to UptimeRobot for 100+ sites, alert delay 2–3 min → real time', 'Owned incident response at 99.9% uptime: root-cause fixes and postmortems', 'Wrote runbooks, documentation and team standards, onboarded new engineers', 'Built 200+ alarms in Datadog, CloudWatch and Kibana, cut false alerts, moved AWS alarms to Terraform', 'Automated Redis flushes and password resets via Jira + AWS, eliminating 150+ manual tickets'] },
     { id: 'igaming', outcome: 'Rollback is a digest pin, not a rebuild. Disposable stacks make non-production environments easy to create and tear down.', org: 'B2B2C SaaS iGaming Platform', role: 'DevOps Engineer / Architect · independent B2B', when: 'Feb 2026 – Present', status: 'running',
-      tags: ['Terraform', 'VPC', 'ECS Service Connect', 'Valkey', 'Prisma', 'Keycloak', 'OIDC', 'Trivy'],
+      tags: ['Terraform', 'VPC', 'ECS Service Connect', 'Valkey', 'Prisma', 'OIDC', 'Trivy'],
       log: ['Architected the complete AWS platform for a modular B2B2C iGaming marketplace, frontend to backend', 'Terraform persistent + disposable stacks: VPC, least-privilege IAM, ECR, ECS Service Connect, Valkey, SSM', 'Changed-service-only ECS deploys with digest-pinned images for instant rollback', 'Prisma migrations as part of the deploy pipeline', 'Security gates with Trivy, Gitleaks and keyless GitHub OIDC across all pipelines'] },
     { id: 'unit', outcome: 'Deploy time down from ~10 to ~2 min, and dev environment spend down ~40%.', org: 'The Unit', role: 'DevOps Engineer · full-time, remote', when: 'Apr 2026 – Present', status: 'running',
       tags: ['Terraform', 'AWS', 'CDK', 'ECS', 'GitHub Actions', 'GitLab CI', 'VPN', 'WireGuard', 'DNS', 'Grafana', 'Azure'],
@@ -362,7 +362,7 @@ const CV = {
     observability: ['Grafana', 'Prometheus', 'Grafana Alloy', 'Loki', 'CloudWatch', 'Datadog', 'Zabbix', 'Kibana', 'UptimeRobot', 'Pingdom', 'Alerting', 'Incident response'],
     data_security: ['PostgreSQL', 'Prisma', 'Redis/Valkey', 'Linux', 'Bash', 'Keycloak', 'Traefik', 'WireGuard', 'OAuth2 Proxy', 'GitHub OIDC', 'Trivy', 'Gitleaks'],
     ai: ['Claude (primary)', 'Codex', 'OpenCode', 'Cursor', 'Multi-agent workflows'],
-    azure: ['Function Apps', 'API Management', 'Front Door + WAF', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'RBAC', 'Service Bus', 'Storage', 'Managed Redis', 'Application Insights', 'Log Analytics'],
+    azure: ['Function Apps', 'API Management', 'Front Door', 'Cosmos DB', 'Key Vault', 'Managed Identity', 'Service Bus'],
   },
   certs: [
     { k: 'BSc', t: 'Software Engineering', o: 'University American College Skopje · 2019–2022' },
@@ -414,7 +414,7 @@ function countUp(el) {
   let rate = 4;
   const spark = $('#rl-spark'); spark.innerHTML = '<i style="height:8%"></i>'.repeat(48);
   function tick() { const b = document.createElement('i'); b.style.height = Math.min(100, rate * (.75 + Math.random() * .5)) + '%'; if (rate > 20) b.style.background = 'var(--danger)'; spark.appendChild(b); spark.firstChild.remove(); }
-  if (!reduced) setInterval(() => { if (!paused) tick(); }, 220);
+  if (!reduced) setInterval(() => { if (gen && !paused) tick(); }, 220);
   function pill(t, c) { const p = $('#rl-pill'); p.textContent = t; p.className = 'pill ' + (c || ''); }
   function deploy(min) { const m = Math.floor(min), s = Math.round((min - m) * 60); $('#rl-vDeploy').textContent = m + ':' + String(s).padStart(2, '0'); $('#rl-mDeploy').style.width = min * 10 + '%'; $('#rl-mDeploy').style.background = min <= 2 ? 'var(--accent)' : 'var(--warn)'; $('#rl-vDeploy').style.color = min <= 2 ? 'var(--accent)' : ''; }
   function spend(p) { $('#rl-vSpend').textContent = p + '%'; $('#rl-mSpend').style.width = p + '%'; $('#rl-mSpend').style.background = p <= 60 ? 'var(--accent)' : 'var(--warn)'; $('#rl-vSpend').style.color = p <= 60 ? 'var(--accent)' : ''; }
@@ -427,8 +427,8 @@ function countUp(el) {
       ['+ module.network.aws_vpc.main      # private subnets', 'a'],
       ['+ module.iam.aws_iam_role.task     # least privilege', 'a'],
       ['+ module.ecs.aws_ecs_service.api   # Service Connect', 'a'],
-      ['+ module.cache.valkey              # private, encrypted', 'a'],
-      ['Plan: 9 to add, 0 to change, 0 to destroy.', ''],
+      ['+ module.cache.valkey              # private', 'a'],
+      ['Plan: 4 to add, 0 to change, 0 to destroy.', ''],
       ['✓ apply complete · state locked per environment', 'g', () => pill('PROVISIONED', 'g')]] },
     { t: 'Speed up', s: 'CI/CD', ev: [
       ['$ ci optimize --deploy-time', 'w', () => pill('OPTIMIZING CI', 'y')],
@@ -442,19 +442,19 @@ function countUp(el) {
       ['→ trivy · gitleaks        0 HIGH · 0 leaks', 'y'],
       ['→ AWS via GitHub OIDC     no static keys', 'y'],
       ['→ build api@sha256:9f2c…  digest pinned', 'y'],
-      ['→ deploy 2 of 6 services  changed only', 'y'],
+      ['→ deploy changed services only', 'y'],
       ['✓ live in 2:00', 'g', () => pill('HEALTHY', 'g')]] },
     { t: 'Break & fix', s: 'on call', ev: [
-      ['✗ ALARM  api 5xx 18% for 60s', 'r', () => { rate = 85; pill('TRIGGERED', 'r'); }],
+      ['✗ ALARM  api 5xx spike after release', 'r', () => { rate = 85; pill('TRIGGERED', 'r'); }],
       ['📟 paged → acknowledged', 'y', () => pill('ACKNOWLEDGED', 'y')],
       ['→ runbook: pin api@sha256:41ab… (last good)', 'y'],
       ['✓ healthy again · rolled back, no rebuild', 'g', () => { rate = 4; pill('RESOLVED', 'g'); }],
-      ['postmortem.md → canary alarm before full rollout', '']] },
+      ['postmortem.md → root cause, fix, new alarm', '']] },
     { t: 'Cut cost', s: 'FinOps', ev: [
       ['$ cost optimize --env dev', 'w', () => pill('OPTIMIZING COST', 'y')],
       ['✓ Spot capacity', 'g', () => spend(88)],
       ['✓ rightsizing', 'g', () => spend(80)],
-      ['✓ off-hours shutdown 20:00 → 08:00', 'g', () => spend(67)],
+      ['✓ off-hours shutdown', 'g', () => spend(67)],
       ['✓ orphan cleanup: EBS · EIP · snapshots', 'g', () => spend(60)],
       ['dev spend down ~40%', 'w', () => pill('ALL SYSTEMS OPERATIONAL', 'g')]] },
   ];
@@ -470,17 +470,18 @@ function countUp(el) {
   const log = $('#rl-log');
   let gen = 0, paused = false, prog = { c: 0, el: 0, dur: 1 };
   function line([t, c]) { log.querySelectorAll('.cur').forEach(x => x.classList.remove('cur')); const d = document.createElement('div'); d.textContent = t; d.className = (c || '') + ' cur'; log.appendChild(d); }
-  function wait(ms, g) { return new Promise(r => { if (!ms) return r(); const t = setInterval(() => { if (g !== gen) { clearInterval(t); return r(); } if (paused) return; prog.el += 50; fills[prog.c].style.width = Math.min(100, prog.el / prog.dur * 100) + '%'; if ((ms -= 50) <= 0) { clearInterval(t); r(); } }, 50); }); }
-  function mark(c) { btns.forEach((b, i) => { b.classList.toggle('on', i === c); b.classList.toggle('done', i < c); fills[i].style.width = i < c ? '100%' : '0'; }); prog = { c, el: 0, dur: CH[c].ev.length * STEP + HOLD || 1 }; }
+  function wait(ms, g) { return new Promise(r => { if (!ms) return r(); let last = performance.now(); const t = setInterval(() => { const now = performance.now(), dt = now - last; last = now; if (g !== gen) { clearInterval(t); return r(); } if (paused) return; prog.el += dt; fills[prog.c].style.width = Math.min(100, prog.el / prog.dur * 100) + '%'; if ((ms -= dt) <= 0) { clearInterval(t); r(); } }, 50); }); }
+  function mark(c) { btns.forEach((b, i) => { b.classList.toggle('on', i === c); b.classList.toggle('done', i < c); i === c ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'); fills[i].style.width = i < c ? '100%' : '0'; }); prog = { c, el: 0, dur: CH[c].ev.length * STEP + HOLD || 1 }; }
   async function play(from) {
     const g = ++gen; reset(); CH.slice(0, from).forEach(c => c.ev.forEach(e => e[2] && e[2]()));
     for (let c = from; c < CH.length; c++) {
-      mark(c); log.innerHTML = ''; $('#rl-title').textContent = `release.sh · ${c + 1}/5 ${CH[c].t.toLowerCase()}`;
+      mark(c); log.innerHTML = ''; $('#rl-title').textContent = `release.sh · ${c + 1}/${CH.length} ${CH[c].t.toLowerCase()}`;
       for (const e of CH[c].ev) { await wait(STEP, g); if (g !== gen) return; line(e); e[2] && e[2](); }
       await wait(HOLD, g); if (g !== gen) return;
       if (reduced) return;
     }
     btns.forEach(b => { b.classList.remove('on'); b.classList.add('done'); });
+    log.setAttribute('aria-live', 'off');
     await wait(1500, g); if (g === gen) play(0);
   }
   const pp = $('#rl-pp');
